@@ -1,12 +1,13 @@
 
 //公用函数集合
-var common = function(_config){
+var common = function (_config) {
     var self = this;
-    var config = {parent:null};
-    this.config = $.extend(true,config,_config);
+    var config = { parent: null };
+    this.config = $.extend(true, config, _config);
 
     this.console = null;
     this.window = null;
+    this.uiAudio = null;
     this.tips = null;
     self.eventController = null;
     this.parent = this.config.parent;
@@ -17,58 +18,89 @@ var common = function(_config){
     //系统语言列表
     this.langList = [
         {
-            name:'中文',
-            tag:'chn',
-            id:0
+            name: '中文',
+            tag: 'chn',
+            id: 0
         },
         {
-            name:'ENG',
-            tag:'eng',
-            id:1
+            name: 'ENG',
+            tag: 'eng',
+            id: 1
         }
     ]
 
     //初始化
-    this.init = function(_callBack){
+    this.init = function (_callBack) {
         //加载common拖挂的模块
-        this.initModul(function(){
+        this.initModul(function () {
             _callBack();
         });
     }
 
     //初始化控制台插件
-    this.initModul = function(_callBack){
+    this.initModul = function (_callBack) {
         //异步加载一下组件，避免网络阻塞
-        require(['./com/console.js','./com/window.js'],function(_console,_window){
+        require(['./com/console.js', './com/window.js', './com/uiAudio.js'], function (_console, _window, _uiAudio) {
             _console = _console.default;
             _window = _window.default;
             self.console = new _console({
-                parent:self
+                parent: self
             });
             self.window = _window;
+            self.uiAudio = new _uiAudio.default();
             _callBack();
         });
     }
 
+    this.playBtnOver = function () {
+        if (self.uiAudio !== null) {
+            self.uiAudio.playBtnOver();
+        }
+    }
+
+    this.playBtnClick = function () {
+        if (self.uiAudio !== null) {
+            self.uiAudio.playBtnClick();
+        }
+    }
+
+    this.playbeepclear = function () {
+        if (self.uiAudio !== null) {
+            self.uiAudio.playbeepclear();
+        }
+    }
+
+    this.playbuttonclickrelease = function () {
+        if (self.uiAudio !== null) {
+            self.uiAudio.playbuttonclickrelease();
+        }
+    }
+
+    this.playcsgo_ui_contract_type1 = function () {
+        if (self.uiAudio !== null) {
+            self.uiAudio.playcsgo_ui_contract_type1();
+        }
+    }
+
     //窗体变更大小
-    this.resize = function(){
-        if(self.console){
+    this.resize = function () {
+        if (self.console) {
             self.console.position();
         }
     }
 
     //运行主进程中的函数
-    this.runMainFunc = function(_type,_event,_args,_callBack){
-        self.eventController.execute(_type,_event,_args,_callBack);
+    this.runMainFunc = function (_type, _event, _args, _callBack) {
+        self.eventController.execute(_type, _event, _args, _callBack);
     }
 
     //打开一个窗口
-    this.openWindow = function(_opt,_callBack){
-        if(self.window === null){
-            setTimeout(function(){
-                self.openWindow(_opt,_callBack);
-            },1000);
-        }else{
+    this.openWindow = function (_opt, _callBack) {
+        if (self.window === null) {
+            setTimeout(function () {
+                self.openWindow(_opt, _callBack);
+            }, 1000);
+        } else {
             var w = new self.window(_opt);
             w.open();
             _callBack(w);
@@ -76,80 +108,80 @@ var common = function(_config){
     }
 
     //自定义本系统的log
-    window.console.write = function(_txt){
-        if(self.console === null){
+    window.console.write = function (_txt) {
+        if (self.console === null) {
             //如果当前控制台插件未载入完成
             //就直接等一秒钟再试试
-            setTimeout(function(){
+            setTimeout(function () {
                 window.console.write(_txt);
-            },1000);
-        }else{
-           self.console.write(_txt);
+            }, 1000);
+        } else {
+            self.console.write(_txt);
         }
     }
 
     //自定义本系统的询问窗口
-    window.ask = this.ask = function(){
+    window.ask = this.ask = function () {
         var arg = arguments;
         var title = '系统确认';
         var message = '系统提示-消息';
-        var yesCall = function(){};			
-        var noCall = function(){};
-        if(arg.length < 2){
+        var yesCall = function () { };
+        var noCall = function () { };
+        if (arg.length < 2) {
             alt('开发人员注意，ask函数最少包含两个参数，第一个为消息，第二个为成功后的回调！');
             return;
         }
 
         //两个参数的时候用户传入了消息和成功回调
-        if(arg.length === 2){
+        if (arg.length === 2) {
             message = arg[0];
             yesCall = arg[1];
         }
         //三个参数的时候用户传入了消息，成功回调，失败回调
-        if(arg.length === 3){
+        if (arg.length === 3) {
             message = arg[0];
             yesCall = arg[1];
             noCall = arg[2];
-        }	
+        }
 
         //四个参数的时候用户传入了，标题，消息，成功回调，失败回调
-        if(arg.length === 4){
+        if (arg.length === 4) {
             title = arg[0];
             message = arg[1];
             yesCall = arg[2];
             noCall = arg[3];
-        }		
+        }
 
-        if(self.window === null){
+        if (self.window === null) {
             //如果当前控制台插件未载入完成
             //就直接等一秒钟再试试
-            setTimeout(function(){
-                window.ask.apply(window,arg);
-            },1000);
-        }else{
+            setTimeout(function () {
+                window.ask.apply(window, arg);
+            }, 1000);
+        } else {
             var w = new self.window({
                 //标题
-                title:title,
+                title: title,
                 //内容
-                content:'<div>'+message+'</div>',
+                content: '<div>' + message + '</div>',
                 //放置的容器
-                container:'body',
+                container: 'body',
                 //位置
-                position:{
-                    x:'center',
-                    y:'center'
+                position: {
+                    x: 'center',
+                    y: 'center'
                 },
-                buttons:{
-                    mode:'yesno',
-                    yesCall:function(){
+                buttons: {
+                    mode: 'yesno',
+                    yesCall: function () {
                         yesCall();
                     },
-                    noCall:function(){
+                    noCall: function () {
                         noCall();
                     }
                 },
                 //关闭回调
-                closeCall:function(){}
+                closeCall: function () { }
             });
 
             w.open();
@@ -159,54 +191,54 @@ var common = function(_config){
     }
 
     //自定义本系统的弹出窗口函数
-    window.alt = this.alt = function(){
+    window.alt = this.alt = function () {
         var arg = arguments;
         var title = '系统提示';
         var message = '系统提示-消息';
-        var callBack = function(){};
+        var callBack = function () { };
         //在只有一个参数的时候说明用户只传入了消息
-        if(arg.length === 1){
+        if (arg.length === 1) {
             message = arg[0];
         }
         //两个参数的时候用户传入了标题和消息
-        if(arg.length === 2){
+        if (arg.length === 2) {
             title = arg[0];
             message = arg[1];
         }
         //三个参数的时候用户传入了标题，消息，和回调函数
-        if(arg.length === 3){
+        if (arg.length === 3) {
             title = arg[0];
             message = arg[1];
             callBack = arg[2];
         }
 
-        if(self.window === null){
+        if (self.window === null) {
             //如果当前控制台插件未载入完成
             //就直接等一秒钟再试试
-            setTimeout(function(){
-                window.alt.apply(window,arg);
-            },1000);
-        }else{
+            setTimeout(function () {
+                window.alt.apply(window, arg);
+            }, 1000);
+        } else {
             var w = new self.window({
                 //标题
-                title:title,
+                title: title,
                 //内容
-                content:'<div>'+message+'</div>',
+                content: '<div>' + message + '</div>',
                 //放置的容器
-                container:'body',
+                container: 'body',
                 //位置
-                position:{
-                    x:'center',
-                    y:'center'
+                position: {
+                    x: 'center',
+                    y: 'center'
                 },
-                buttons:{
-                    mode:'yes',
-                    yesCall:function(){
+                buttons: {
+                    mode: 'yes',
+                    yesCall: function () {
                         callBack();
                     }
                 },
                 //关闭回调
-                closeCall:function(){}
+                closeCall: function () { }
             });
             w.open();
 
@@ -215,150 +247,150 @@ var common = function(_config){
     }
 
     //显示下拉菜单
-    this.showDrMenu = function(_arr,_position,_isAwaysShow,_distoryCall){
+    this.showDrMenu = function (_arr, _position, _isAwaysShow, _distoryCall) {
         var rightMenuBackGround = $('<table class="n-rBack-g" ><tr><td></td></tr></table>').appendTo('body');
         var rightMenu = $('<div class="n-rightMenu" ></div>').appendTo('body');
 
-        var distroy = function(){
+        var distroy = function () {
             rightMenuBackGround.remove();
             rightMenu.remove();
-            if(typeof _distoryCall === 'function'){
+            if (typeof _distoryCall === 'function') {
                 _distoryCall();
             }
         }
 
-        for(var i=0;i<_arr.length;i++){
+        for (var i = 0; i < _arr.length; i++) {
             var aitem = _arr[i];
-            var elem = aitem.elem = $('<div class="n-rightMenu-item" >'+ aitem.name +'</div>').appendTo(rightMenu);
-            if(i % 2){
+            var elem = aitem.elem = $('<div class="n-rightMenu-item" >' + aitem.name + '</div>').appendTo(rightMenu);
+            if (i % 2) {
                 elem.addClass('on');
             }
-            (function(_elem,_aitem,_distroy){
-                _elem.click(function(){
-                    if(typeof _isAwaysShow === 'undefined'){
+            (function (_elem, _aitem, _distroy) {
+                _elem.click(function () {
+                    if (typeof _isAwaysShow === 'undefined') {
                         _distroy();
                     }
                     _aitem.call();
                 });
-            })(elem,aitem,distroy);
+            })(elem, aitem, distroy);
         }
 
-        rightMenuBackGround.height($(window).height() +'px');
-        rightMenu.css('top',_position.y+'px');
-        rightMenu.css('left',_position.x+'px');
+        rightMenuBackGround.height($(window).height() + 'px');
+        rightMenu.css('top', _position.y + 'px');
+        rightMenu.css('left', _position.x + 'px');
 
-        $(rightMenuBackGround).click(function(){
+        $(rightMenuBackGround).click(function () {
             distroy();
         });
     }
 
     //显示高级可调序下拉菜单
-    this.showDrOrMenu = function(_arr,_position,_isAwaysShow,_distoryCall,_orderCall){
+    this.showDrOrMenu = function (_arr, _position, _isAwaysShow, _distoryCall, _orderCall) {
         var rightMenuBackGround = $('<table class="n-rBack-g" ><tr><td></td></tr></table>').appendTo('body');
         var rightMenu = $('<div class="n-rightMenu" ></div>').appendTo('body');
 
-        var distroy = function(){
+        var distroy = function () {
             rightMenuBackGround.remove();
             rightMenu.remove();
-            if(typeof _distoryCall === 'function'){
+            if (typeof _distoryCall === 'function') {
                 _distoryCall();
             }
         }
 
-        for(var i=0;i<_arr.length;i++){
+        for (var i = 0; i < _arr.length; i++) {
             var aitem = _arr[i];
             var selection = '';
-            if(aitem.item.isDisplay === true){
+            if (aitem.item.isDisplay === true) {
                 selection = '<div class="n-f-smallSelection selected" ></div>'
-            }else{
+            } else {
                 selection = '<div class="n-f-smallSelection" ></div>'
-            }	
-            var elem = aitem.elem = $('<div class="n-rightMenu-item" >'+ selection + aitem.name +'<div class="n-rightMenu-item-order" ></div></div>').appendTo(rightMenu);
-            aitem.elem.data('sourceData',aitem);
-            if(i % 2){
+            }
+            var elem = aitem.elem = $('<div class="n-rightMenu-item" >' + selection + aitem.name + '<div class="n-rightMenu-item-order" ></div></div>').appendTo(rightMenu);
+            aitem.elem.data('sourceData', aitem);
+            if (i % 2) {
                 elem.addClass('on');
             }
             aitem.sec = i;
-            (function(_elem,_aitem,_distroy){
-                _elem.find('.n-rightMenu-item-order').click(function(e){
+            (function (_elem, _aitem, _distroy) {
+                _elem.find('.n-rightMenu-item-order').click(function (e) {
                     e.stopPropagation();
                 });
-                _elem.find('.n-rightMenu-item-order').mousedown(function(e){
+                _elem.find('.n-rightMenu-item-order').mousedown(function (e) {
                     var aAitem = _aitem;
                     var totalBackground = $('<div></div>').appendTo('body');
-                    totalBackground.css('background-color','#fff');
-                    totalBackground.css('position','absolute');
-                    totalBackground.css('top','0px');
-                    totalBackground.css('left','0px');
-                    totalBackground.css('z-index','998');
-                    totalBackground.css('opacity','0');
+                    totalBackground.css('background-color', '#fff');
+                    totalBackground.css('position', 'absolute');
+                    totalBackground.css('top', '0px');
+                    totalBackground.css('left', '0px');
+                    totalBackground.css('z-index', '998');
+                    totalBackground.css('opacity', '0');
                     totalBackground.height($(window).height());
                     totalBackground.width($(window).width());
                     var fakeLayerArr = [];
-                    for(var j=0;j<_arr.length;j++){
+                    for (var j = 0; j < _arr.length; j++) {
                         var elem = _arr[j].elem;
                         var fItem = _arr[j].fItem = $('<div></div>').appendTo('body');
-                        fItem.css('background-color','#fff');
-                        fItem.css('position','absolute');
-                        fItem.css('top',elem.offset().top+'px');
-                        fItem.css('left',elem.offset().left+'px');
-                        fItem.css('z-index','999');
-                        fItem.css('opacity','0');
+                        fItem.css('background-color', '#fff');
+                        fItem.css('position', 'absolute');
+                        fItem.css('top', elem.offset().top + 'px');
+                        fItem.css('left', elem.offset().left + 'px');
+                        fItem.css('z-index', '999');
+                        fItem.css('opacity', '0');
                         fItem.height(elem.outerHeight());
                         fItem.width(elem.outerWidth());
                         fakeLayerArr.push(fItem);
                     }
                     var dItemPosition = {
-                        x:(mControl.nowPosition.x - _elem.offset().left),
-                        y:(mControl.nowPosition.y - _elem.offset().top)
+                        x: (mControl.nowPosition.x - _elem.offset().left),
+                        y: (mControl.nowPosition.y - _elem.offset().top)
                     }
-                    var dItem = $('<div class="n-rightMenu-item-order-dragItem" >'+ _elem.text() +'</div>').appendTo('body');
+                    var dItem = $('<div class="n-rightMenu-item-order-dragItem" >' + _elem.text() + '</div>').appendTo('body');
                     //移动元素
-                    var moveItem = function(){
-                        dItem.css('top',(mControl.nowPosition.y -  dItemPosition.y)+'px');
-                        dItem.css('left',(mControl.nowPosition.x -  dItemPosition.x)+'px');
+                    var moveItem = function () {
+                        dItem.css('top', (mControl.nowPosition.y - dItemPosition.y) + 'px');
+                        dItem.css('left', (mControl.nowPosition.x - dItemPosition.x) + 'px');
                     }
                     //销毁
-                    var distory = function(){
+                    var distory = function () {
                         mControl.removeMMRFunc('NRIOD-M');
                         mControl.removeMURFunc('NRIOD-U');
                         dItem.remove();
                         totalBackground.remove();
-                        for(var n in fakeLayerArr){
+                        for (var n in fakeLayerArr) {
                             fakeLayerArr[n].remove();
                         }
                     }
-                    
-                    dItem.height(_elem.outerHeight()-4);
-                    dItem.width(_elem.outerWidth());
-                    dItem.css('line-height',_elem.outerHeight()-4+"px")
 
-                    mControl.addMouseMoveFunc('NRIOD-M',function(){
+                    dItem.height(_elem.outerHeight() - 4);
+                    dItem.width(_elem.outerWidth());
+                    dItem.css('line-height', _elem.outerHeight() - 4 + "px")
+
+                    mControl.addMouseMoveFunc('NRIOD-M', function () {
                         moveItem();
                     });
 
-                    mControl.addMouseUpFunc('NRIOD-U',function(){
+                    mControl.addMouseUpFunc('NRIOD-U', function () {
                         distory();
                     });
 
                     var blance = $('<div></div>');
-                    
 
-                    totalBackground.mouseover(function(){
+
+                    totalBackground.mouseover(function () {
                         _elem.slideDown(400);
-                        blance.slideUp(400,function(){
+                        blance.slideUp(400, function () {
                             blance.remove();
                         });
                     });
 
-                    for(var j=0;j<_arr.length;j++){
-                        (function(_aItem){
-                            _aItem.fItem.mouseover(function(){
+                    for (var j = 0; j < _arr.length; j++) {
+                        (function (_aItem) {
+                            _aItem.fItem.mouseover(function () {
                                 blance.stop();
                                 blance.remove();
-                                if(_aItem.sec >= aAitem.sec){
+                                if (_aItem.sec >= aAitem.sec) {
                                     blance.insertAfter(_aItem.elem);
-                                }else{
+                                } else {
                                     blance.insertBefore(_aItem.elem);
                                 }
                                 blance.height(elem.outerHeight());
@@ -366,18 +398,18 @@ var common = function(_config){
                                 _elem.slideUp(200);
                                 blance.slideDown(200);
                             });
-                            _aItem.fItem.mouseup(function(){
+                            _aItem.fItem.mouseup(function () {
                                 blance.replaceWith(_elem);
                                 _elem.show();
                                 var c = rightMenu.children();
                                 var newArr = [];
-                                for(var k =0;k<c.length;k++){
+                                for (var k = 0; k < c.length; k++) {
                                     var item = $(c[k]).data('sourceData');
                                     newArr.push(item);
                                 }
                                 _orderCall(newArr);
                                 _distroy();
-                                self.showDrOrMenu(newArr,_position,_isAwaysShow,_distoryCall,_orderCall);
+                                self.showDrOrMenu(newArr, _position, _isAwaysShow, _distoryCall, _orderCall);
                             })
                         })(_arr[j])
                     }
@@ -385,78 +417,78 @@ var common = function(_config){
 
                     e.stopPropagation();
                 });
-                _elem.click(function(){
-                    if(typeof _isAwaysShow === 'undefined'){
+                _elem.click(function () {
+                    if (typeof _isAwaysShow === 'undefined') {
                         _distroy();
                     }
                     _aitem.call();
                 });
-            })(elem,aitem,distroy);
+            })(elem, aitem, distroy);
         }
 
-        rightMenuBackGround.height($(window).height() +'px');
-        rightMenu.css('top',_position.y+'px');
-        rightMenu.css('left',_position.x+'px');
+        rightMenuBackGround.height($(window).height() + 'px');
+        rightMenu.css('top', _position.y + 'px');
+        rightMenu.css('left', _position.x + 'px');
 
-        $(rightMenuBackGround).click(function(){
+        $(rightMenuBackGround).click(function () {
             distroy();
         });
     }
 
     //获得两点之间的距离
-    this.getLength=function(p1,p2){
-        return Math.sqrt(Math.pow(p1.x - p2.x,2) + Math.pow(p1.y - p2.y,2));
+    this.getLength = function (p1, p2) {
+        return Math.sqrt(Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2));
     };
     //获得一个随机数
-    this.getRand=function(Max,Min){
+    this.getRand = function (Max, Min) {
         var Range = Max - Min;
-          var Rand = Math.random();
-          if(Math.round(Rand * Range)==0){       
+        var Rand = Math.random();
+        if (Math.round(Rand * Range) == 0) {
             return Min + 1;
-          }
-          var num = Min + Math.round(Rand * Range);
-          return num;
+        }
+        var num = Min + Math.round(Rand * Range);
+        return num;
     };
     //千分位分割
-    this.thousandsSplit=function(num) {
+    this.thousandsSplit = function (num) {
         var numStr = $.trim(num.toString()).split('.')[0].split('');
         var output = '';
 
         var j = 0;
-        for (var i = numStr.length-1; i >-1; i--) {
-            if (j % 3 == 0 && j!=0) {
-                output = numStr[i] + ","+output;
-            }else{
+        for (var i = numStr.length - 1; i > -1; i--) {
+            if (j % 3 == 0 && j != 0) {
+                output = numStr[i] + "," + output;
+            } else {
                 output = numStr[i] + output;
             }
             j++;
         }
-        if(num.toString().split('.')[1]){
+        if (num.toString().split('.')[1]) {
             output += "." + num.toString().split('.')[1];
         }
-        return output ;
+        return output;
     };
 
 
     /**
      * 提取url参数
      */
-    this.getUrlParams = function() {
+    this.getUrlParams = function () {
         var url = location.href;
-        var pstart = url.indexOf('?');  
+        var pstart = url.indexOf('?');
         var params = {};
-        if(pstart > -1) {
+        if (pstart > -1) {
             url = url.substring(pstart + 1);
             pstart = url.indexOf('#');
-            if(pstart > -1) {
-                url = url.substring(0,pstart);
+            if (pstart > -1) {
+                url = url.substring(0, pstart);
             }
             var ps = url.split('&');
-            if(ps.length > 0) {
-                for(var i=0;i<ps.length;i++) {
+            if (ps.length > 0) {
+                for (var i = 0; i < ps.length; i++) {
                     var p = ps[i];
                     var kv = p.split('=');
-                    if(kv.length == 2) {
+                    if (kv.length == 2) {
                         params[kv[0]] = kv[1];
                     }
                     if (kv.length == 3) {
@@ -475,7 +507,7 @@ var common = function(_config){
     /**
     *设置url参数
     */
-    this.setUrlParam = function(_key,_val){
+    this.setUrlParam = function (_key, _val) {
         //先获取所有的参数
         var params = this.getUrlParams();
         //再写入要写入的参数
@@ -484,37 +516,37 @@ var common = function(_config){
         var path = window.location.pathname;
         var paramsStr = '?';
         var k = 0;
-        for(var i in params){
-            if(i === '_'){
+        for (var i in params) {
+            if (i === '_') {
                 continue;
             }
-            if(k!=0){
+            if (k != 0) {
                 paramsStr += '&';
             }
             paramsStr += i + '=' + params[i];
             k++;
         }
-        window.location.href = path + '#/'+paramsStr;
+        window.location.href = path + '#/' + paramsStr;
     }
 
     //去重算法
-    this.removeDuplicate = function(array,callBack) {
-        if(typeof callBack === 'undefined'){
-            callBack = function(a,b){
+    this.removeDuplicate = function (array, callBack) {
+        if (typeof callBack === 'undefined') {
+            callBack = function (a, b) {
                 return JSON.stringify(a) !== JSON.stringify(b);
             }
         }
         var array = array;
         //再去重
         var j = 0;
-        for(var k=0;k<99999999;k++) {
+        for (var k = 0; k < 99999999; k++) {
             var tempArr = [];
             for (var i = 0; i < array.length; i++) {
-                if (i === j ) {
+                if (i === j) {
                     tempArr.push(array[j]);
                     continue;
                 }
-                if (callBack(array[i],array[j])) {
+                if (callBack(array[i], array[j])) {
                     tempArr.push(array[i]);
                 }
             }
@@ -527,7 +559,7 @@ var common = function(_config){
         return array;
     };
     //获得一个gui ID
-    this.newGuid = function (){
+    this.newGuid = function () {
         var guid = "";
         for (var i = 1; i <= 32; i++) {
             var n = Math.floor(Math.random() * 16.0).toString(16);
@@ -537,163 +569,163 @@ var common = function(_config){
     };
 
     //重写toFixed为四舍五入
-    Number.prototype.toFixed=function(len){  
-        var tempNum = 0;  
-        var s,temp;  
-        var s1 = this + "";  
-        var start = s1.indexOf(".");  
-        if(start === -1){
+    Number.prototype.toFixed = function (len) {
+        var tempNum = 0;
+        var s, temp;
+        var s1 = this + "";
+        var start = s1.indexOf(".");
+        if (start === -1) {
             return s1;
         }
-          
+
         //截取小数点后,0之后的数字，判断是否大于5，如果大于5这入为1  
 
-       if(s1.substr(start+len+1,1)>=5)  
-        tempNum=1;  
+        if (s1.substr(start + len + 1, 1) >= 5)
+            tempNum = 1;
 
         //计算10的len次方,把原数字扩大它要保留的小数位数的倍数  
-      var temp = Math.pow(10,len);  
+        var temp = Math.pow(10, len);
         //求最接近this * temp的最小数字  
         //floor() 方法执行的是向下取整计算，它返回的是小于或等于函数参数，并且与之最接近的整数  
-        s = Math.floor(this * temp) + tempNum;  
-        return s/temp;  
+        s = Math.floor(this * temp) + tempNum;
+        return s / temp;
     }
 
     //显示正在加载层
-    this.showLoad = function(_text){
+    this.showLoad = function (_text) {
         var loadLayer = $('<table class="common-load" ><tr><td><img src="../images/loadding.png" /></td></tr></table>').appendTo('body');
-        if(typeof _text !== 'undefined'){
+        if (typeof _text !== 'undefined') {
             self.console.write(_text);
         }
     }
 
-    this.clearLoad = function(_text){
+    this.clearLoad = function (_text) {
         $('.common-load').remove();
     }
 
     /**
     * 格式化时间
     */
-    this.formatDate = function(date, format) {
+    this.formatDate = function (date, format) {
         date = date || new Date();
         format = format || 'yyyy-MM-dd HH:mm:ss';
         var result = format.replace('yyyy', date.getFullYear().toString())
-        .replace('yy', date.getFullYear().toString().substring(2,4))
-        .replace('MM', (date.getMonth()< 9?'0':'') + (date.getMonth() + 1).toString())
-        .replace('dd', (date.getDate()< 10?'0':'')+date.getDate().toString())
-        .replace('HH', (date.getHours() < 10 ? '0' : '') + date.getHours().toString())
-        .replace('mm', (date.getMinutes() < 10 ? '0' : '') + date.getMinutes().toString())
-        .replace('ss', (date.getSeconds() < 10 ? '0' : '') + date.getSeconds().toString());
+            .replace('yy', date.getFullYear().toString().substring(2, 4))
+            .replace('MM', (date.getMonth() < 9 ? '0' : '') + (date.getMonth() + 1).toString())
+            .replace('dd', (date.getDate() < 10 ? '0' : '') + date.getDate().toString())
+            .replace('HH', (date.getHours() < 10 ? '0' : '') + date.getHours().toString())
+            .replace('mm', (date.getMinutes() < 10 ? '0' : '') + date.getMinutes().toString())
+            .replace('ss', (date.getSeconds() < 10 ? '0' : '') + date.getSeconds().toString());
 
         return result;
     }
 
     //获得当前是周几
-    this.getDayOfWeek = function(_date){
-        var weekDay = ["周天", "周一", "周二", "周三", "周四", "周五", "周六"];  
-        var myDate = new Date(_date);  
-        return weekDay[myDate.getDay()]; 
+    this.getDayOfWeek = function (_date) {
+        var weekDay = ["周天", "周一", "周二", "周三", "周四", "周五", "周六"];
+        var myDate = new Date(_date);
+        return weekDay[myDate.getDay()];
     }
 
-    this.getTimeOfDay = function(_date){ 
-        var hour = self.formatDate(_date,'HH');
-        if(hour === '00' ||
+    this.getTimeOfDay = function (_date) {
+        var hour = self.formatDate(_date, 'HH');
+        if (hour === '00' ||
             hour === '01' ||
             hour === '02' ||
             hour === '03' ||
             hour === '04' ||
-            hour === '05'){
+            hour === '05') {
             return '凌晨';
         }
-        if(hour === '06' ||
+        if (hour === '06' ||
             hour === '07' ||
-            hour === '08' ){
+            hour === '08') {
             return '早上';
         }
-        if(hour === '09' ||
+        if (hour === '09' ||
             hour === '10' ||
-            hour === '11' ){
+            hour === '11') {
             return '上午';
         }
-        if(hour === '11' ||
+        if (hour === '11' ||
             hour === '12' ||
-            hour === '13' ){
+            hour === '13') {
             return '中午';
         }
-        if(hour === '14' ||
+        if (hour === '14' ||
             hour === '15' ||
             hour === '16' ||
             hour === '17' ||
-            hour === '18'){
+            hour === '18') {
             return '下午';
         }
-        if(hour === '19' ||
+        if (hour === '19' ||
             hour === '20' ||
             hour === '21' ||
             hour === '22' ||
-            hour === '23'){
+            hour === '23') {
             return '晚上';
         }
         return '';
     }
 
-    this.getColorOfDay = function(_value){
+    this.getColorOfDay = function (_value) {
         var color = '';
-        if(_value === '凌晨'){
+        if (_value === '凌晨') {
             color = '#2b1d83';
         }
-        if(_value === '早上'){
+        if (_value === '早上') {
             color = '#1d7c83';
         }
-        if(_value === '上午'){
+        if (_value === '上午') {
             color = '#1a9426';
         }
-        if(_value === '中午'){
+        if (_value === '中午') {
             color = '#bec513';
         }
-        if(_value === '下午'){
+        if (_value === '下午') {
             color = '#9e791a';
         }
-        if(_value === '晚上'){
+        if (_value === '晚上') {
             color = '#6b1717';
         }
         return color;
     }
 
     //增加天数
-    this.dateAddDays = function(dateStr,dayCount) {
-        var tempDate=new Date(dateStr.replace(/-/g,"/"));//把日期字符串转换成日期格式
-        var resultDate=new Date((tempDate/1000+(86400*dayCount))*1000);//增加n天后的日期
+    this.dateAddDays = function (dateStr, dayCount) {
+        var tempDate = new Date(dateStr.replace(/-/g, "/"));//把日期字符串转换成日期格式
+        var resultDate = new Date((tempDate / 1000 + (86400 * dayCount)) * 1000);//增加n天后的日期
         return resultDate;
     }
 
     //减去天数
-    this.dateMDays = function(dateStr,dayCount) {
-        var tempDate=new Date(dateStr.replace(/-/g,"/"));//把日期字符串转换成日期格式
-        var resultDate=new Date((tempDate/1000-(86400*dayCount))*1000);//减去n天后的日期
+    this.dateMDays = function (dateStr, dayCount) {
+        var tempDate = new Date(dateStr.replace(/-/g, "/"));//把日期字符串转换成日期格式
+        var resultDate = new Date((tempDate / 1000 - (86400 * dayCount)) * 1000);//减去n天后的日期
         return resultDate;
     }
 
     //增加小时
-    this.dateAddHours = function(dateStr,HCount) {
-        var tempDate=new Date(dateStr.replace(/-/g,"/"));//把日期字符串转换成日期格式
-        var resultDate=new Date(tempDate+( (1000 * 60 * 60) * HCount));//增加n小时的日期
+    this.dateAddHours = function (dateStr, HCount) {
+        var tempDate = new Date(dateStr.replace(/-/g, "/"));//把日期字符串转换成日期格式
+        var resultDate = new Date(tempDate + ((1000 * 60 * 60) * HCount));//增加n小时的日期
         return resultDate;
     }
 
     //减去小时
-    this.dateMHours = function(dateStr,HCount) {
-        var tempDate=new Date(dateStr.replace(/-/g,"/"));//把日期字符串转换成日期格式
-        var resultDate=new Date(tempDate-( (1000 * 60 * 60) * HCount));//减去n小时的日期
+    this.dateMHours = function (dateStr, HCount) {
+        var tempDate = new Date(dateStr.replace(/-/g, "/"));//把日期字符串转换成日期格式
+        var resultDate = new Date(tempDate - ((1000 * 60 * 60) * HCount));//减去n小时的日期
         return resultDate;
     }
 
-    
+
 
     //判断是否为json对象
-    this.isJsonObject = function(_data){
-        if(typeof(_data) == "object" && 
-        Object.prototype.toString.call(_data).toLowerCase() == "[object object]" && !_data.length){
+    this.isJsonObject = function (_data) {
+        if (typeof (_data) == "object" &&
+            Object.prototype.toString.call(_data).toLowerCase() == "[object object]" && !_data.length) {
             return true;
         }
         return false;
@@ -762,7 +794,7 @@ var common = function(_config){
             }
         }
     });
-    
+
 }
 
 export default common;

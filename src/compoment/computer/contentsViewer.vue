@@ -121,6 +121,7 @@
         $(this.$refs.viewScroller).height($(window).height() - rHeight - 50)
       },
       redirct(_item) {
+        window.sys.playBtnClick()
         HasRedirect = true
         var content = this.$refs.content
         var _self = this
@@ -171,6 +172,7 @@
         this.$emit('mOver', {})
       },
       close() {
+        window.sys.playbuttonclickrelease()
         this.$emit('contentClose', {})
       },
     },
