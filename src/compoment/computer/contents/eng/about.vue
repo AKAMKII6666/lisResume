@@ -17,6 +17,12 @@
         </td>
       </tr>
       <tr>
+        <td>
+          Production time: 7 days / including material collection, business
+          code, design and compatibility adjustment
+        </td>
+      </tr>
+      <tr>
         <td>Visit GitHub to download the source code and design：</td>
       </tr>
       <tr>
@@ -36,6 +42,12 @@
       </tr>
       <tr>
         <td>Source of model material: https://sketchfab.com/</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>This resume UI sound effects are from CS:go</td>
       </tr>
       <tr>
         <td>&nbsp;</td>

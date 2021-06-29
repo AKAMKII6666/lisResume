@@ -153,26 +153,29 @@
         }
       },
       hide(_callBack) {
-        this.$router.push('/')
         var content = this.$refs.content
-        $(content).animate(
-          { right: -$(content).outerWidth() / 10, opacity: 0 },
-          {
-            duration: 400,
-            easing: 'easeOutBack',
-            step: function () {},
-            complete: function () {
-              $(content).css('display', 'none')
-              _callBack()
-            },
-          }
-        )
+        if ($(content).css('display') !== 'none') {
+          window.sys.playbuttonclickrelease()
+          this.$router.push('/')
+
+          $(content).animate(
+            { right: -$(content).outerWidth() / 10, opacity: 0 },
+            {
+              duration: 400,
+              easing: 'easeOutBack',
+              step: function () {},
+              complete: function () {
+                $(content).css('display', 'none')
+                _callBack()
+              },
+            }
+          )
+        }
       },
       mOver() {
         this.$emit('mOver', {})
       },
       close() {
-        window.sys.playbuttonclickrelease()
         this.$emit('contentClose', {})
       },
     },

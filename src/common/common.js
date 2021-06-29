@@ -116,6 +116,7 @@ var common = function (_config) {
                 window.console.write(_txt);
             }, 1000);
         } else {
+            self.playbeepclear();
             self.console.write(_txt);
         }
     }

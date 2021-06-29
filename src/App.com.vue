@@ -84,12 +84,38 @@
         window.navigator.language == 'zh-CN'
       ) {
         selfApp.changeLang(window.sys.langList[0])
-        console.write('系统已经为您选择了中文作为浏览语言..')
+        var r = function () {
+          console.write('系统已经为您选择了中文作为浏览语言..')
+          $(document).unbind('click', r)
+        }
+        $(document).click(r)
       } else {
         selfApp.changeLang(window.sys.langList[1])
-        console.write('System Using ENGLISH..')
+        var r = function () {
+          console.write('System Using ENGLISH to show contents')
+          $(document).unbind('click', r)
+        }
+        $(document).click(r)
       }
-      console.write('感谢您浏览我的简历！')
+      var k = function () {
+        console.write('感谢您浏览我的简历！')
+
+        if (window.isOldBrowser) {
+          setTimeout(function () {
+            console.write(
+              '您的浏览器无法展示3D场景，建议更换成Chrome浏览器或者Edge浏览器!'
+            )
+          }, 1000)
+        } else {
+          if (window.gCardLevel === 'mid' || window.gCardLevel === 'low') {
+            setTimeout(function () {
+              console.write('点击右上角的按钮可以配置3D背景的质量!')
+            }, 2000)
+          }
+        }
+        $(document).unbind('click', k)
+      }
+      $(document).click(k)
 
       //如果当前页面不是/ 说明用户想访问其它页面
       if (window.__initPath !== '/') {
@@ -106,15 +132,15 @@
         nBtn: ['不会', 'No'],
         alt1: [
           `
-                                                    <div>请联系我，我将安排行程参与面试:</div>
-                                                    <div>Tel:18681449125</div>
-                                                    <div>qq:281191341</div>
-                                  `,
+                                                                            <div>请联系我，我将安排行程参与面试:</div>
+                                                                            <div>Tel:18681449125</div>
+                                                                            <div>qq:281191341</div>
+                                                          `,
           `
-                                                    <div>Please contact me, I will arrange the schedule to participate in the interview:</div>
-                                                    <div>Tel:18681449125</div>
-                                                    <div>qq:281191341</div>
-                                  `,
+                                                                            <div>Please contact me, I will arrange the schedule to participate in the interview:</div>
+                                                                            <div>Tel:18681449125</div>
+                                                                            <div>qq:281191341</div>
+                                                          `,
         ],
         alt2: [
           `感谢您花时间阅读我的简历，我会更加努力，将来有机会再合作!`,

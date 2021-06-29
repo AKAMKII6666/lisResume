@@ -14,6 +14,9 @@
         <td>美术/重构/交互/功能实现均由本人完成</td>
       </tr>
       <tr>
+        <td>制作时间：7天/包括素材收集，业务代码，设计以及兼容性调整</td>
+      </tr>
+      <tr>
         <td>访问GitHub即可下载源码及设计搞：</td>
       </tr>
       <tr>
@@ -33,6 +36,12 @@
       </tr>
       <tr>
         <td>模型素材来源: https://sketchfab.com/</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>本简历UI声效均来自CS:GO文件提取</td>
       </tr>
       <tr>
         <td>&nbsp;</td>
