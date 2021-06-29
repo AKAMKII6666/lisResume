@@ -8,7 +8,7 @@
           </td>
         </tr>
         <tr>
-          <td width="200">
+          <td width="300">
             <p>所属行业：</p>
           </td>
           <td>
@@ -64,7 +64,7 @@
           </td>
         </tr>
         <tr>
-          <td width="200">
+          <td width="300">
             <p>所属行业：</p>
           </td>
           <td>
@@ -113,7 +113,7 @@
           <td colspan="2">工作经验：【2014/08-2017/07:腾讯IEG运营部】</td>
         </tr>
         <tr>
-          <td width="200">
+          <td width="300">
             <p>所属行业：</p>
           </td>
           <td>
@@ -166,7 +166,7 @@
           </td>
         </tr>
         <tr>
-          <td width="200">
+          <td width="300">
             <p>·软件环境：</p>
           </td>
           <td>
@@ -228,7 +228,7 @@
           </td>
         </tr>
         <tr>
-          <td width="200">
+          <td width="300">
             <p>·软件环境：</p>
           </td>
           <td>
@@ -292,7 +292,7 @@
           </td>
         </tr>
         <tr>
-          <td width="200">
+          <td width="300">
             <p>·软件环境：</p>
           </td>
           <td>
@@ -341,7 +341,7 @@
           <td colspan="2">工作经验：【2013/11 –2014/08:微创外包】</td>
         </tr>
         <tr>
-          <td width="200">
+          <td width="300">
             <p>所属行业：</p>
           </td>
           <td>
@@ -397,7 +397,7 @@
           </td>
         </tr>
         <tr>
-          <td width="200">
+          <td width="300">
             <p>·软件环境：</p>
           </td>
           <td>
@@ -460,7 +460,7 @@
           </td>
         </tr>
         <tr>
-          <td width="200">
+          <td width="300">
             <p>·软件环境：</p>
           </td>
           <td>

@@ -1,9 +1,9 @@
 <template>
-  <div class='mainContent' >
-    <table class='perTable' >
+  <div class="mainContent">
+    <table class="perTable">
       <tr>
-        <td rowspan="7" >
-          <div class='avator' ></div>
+        <td rowspan="9">
+          <div class="avator"></div>
         </td>
         <td>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</td>
         <td>廖力</td>
@@ -29,6 +29,14 @@
         <td>10年</td>
       </tr>
       <tr>
+        <td>目前所在：</td>
+        <td>深圳/龙华</td>
+      </tr>
+      <tr>
+        <td>期望地点：</td>
+        <td>北京</td>
+      </tr>
+      <tr>
         <td>电&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;话：</td>
         <td>18681449125</td>
       </tr>
@@ -37,11 +45,10 @@
 </template>
 
 <script>
-export default {
-    name:'persionalInfomation'
-}
+  export default {
+    name: 'persionalInfomation',
+  }
 </script>
 
 <style>
-
 </style>

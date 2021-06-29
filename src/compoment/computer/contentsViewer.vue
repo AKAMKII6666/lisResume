@@ -336,4 +336,20 @@
 
     &.b
       background-color: rgba(201, 116, 29, 0.35)
+
+  table.t-abme
+    margin: 40px auto auto auto
+
+    tr
+      td
+        font-size: 30px
+        color: #fff
+        height: 40px
+        line: height 40px
+        text-align: left
+
+        &.ab-title
+          font-size: 72px
+          height: 89px
+          line-height: 89px
 </style>

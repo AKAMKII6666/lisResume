@@ -95,6 +95,73 @@
       if (window.__initPath !== '/') {
         this.tirggerMenu()
       }
+
+      var lanText = {
+        title: ['来自廖力的信息：', 'Message From Li:'],
+        content: [
+          '<div>您会邀请我参与面试吗?</div>',
+          '<div>Will you invite me to participant interview?</div>',
+        ],
+        yBtn: ['会', 'Yes'],
+        nBtn: ['不会', 'No'],
+        alt1: [
+          `
+                                                  <div>请联系我，我将安排行程参与面试:</div>
+                                                  <div>Tel:18681449125</div>
+                                                  <div>qq:281191341</div>
+                                `,
+          `
+                                                  <div>Please contact me, I will arrange the schedule to participate in the interview:</div>
+                                                  <div>Tel:18681449125</div>
+                                                  <div>qq:281191341</div>
+                                `,
+        ],
+        alt2: [
+          `感谢您花时间阅读我的简历，我会更加努力，将来有机会再合作!`,
+          `Thank you for taking the time to read my resume, I will work harder and have the opportunity to cooperate again in the future!`,
+        ],
+      }
+
+      //一旦挂载成功后，就可以开始计时，如果浏览超过十分钟就弹出对话框
+      setTimeout(function () {
+        debugger
+        var w = new window.sys.window({
+          //标题
+          title: lanText.title[sys.langConfig],
+          //内容
+          content: lanText.content[sys.langConfig],
+          //放置的容器
+          container: 'body',
+          //位置
+          position: {
+            x: 'center',
+            y: 'center',
+          },
+          buttons: {
+            mode: 'free',
+            arr: [
+              {
+                name: lanText.yBtn[sys.langConfig],
+                callBack: function () {
+                  alt(lanText.alt1[sys.langConfig])
+                  w.close()
+                },
+              },
+              {
+                name: lanText.nBtn[sys.langConfig],
+                callBack: function () {
+                  alt(lanText.alt2[sys.langConfig])
+                  w.close()
+                },
+              },
+            ],
+          },
+          //关闭回调
+          closeCall: function () {},
+        })
+
+        w.open()
+      }, 10 * 60 * 1000)
     },
     components: {
       langSwitcher: langSwitcher,
