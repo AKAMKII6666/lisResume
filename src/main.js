@@ -1,22 +1,23 @@
 //导入vue
 import Vue from 'vue';
 import Router from 'vue-router';
-import App from './App.com.vue';
+//import App from './App.com.vue';
+import App from './App.mob.vue';
 import 'babel-polyfill';
 //导入公用组件
 import jquery from 'jquery';
 import 'jquery.easing';
 import common from 'common/common.js';
 
-let initSys = function(){
+let initSys = function () {
     window.jquery = jquery;
     window.$ = jquery;
     window.sys = new common();
     //公用函数加载成功
-    window.sys.init(function(){
+    window.sys.init(function () {
         //完成公用组件的载入
-        console.write('系统已经载入完成.');
-        $(window).resize(function(){
+        //console.write('系统已经载入完成.');
+        $(window).resize(function () {
             sys.console.position();
         });
     });
@@ -40,27 +41,29 @@ let initSys = function(){
     }
     Vue.use(Router);
     new Vue({
-        el:'#app', 
-        components:{
-            App:App
+        el: '#app',
+        components: {
+            App: App
         },
-        template:"<App/>" 
+        template: "<App/>"
     });
 }
 
 //适配高底浏览器
-var userAgent = navigator.userAgent; 
+var userAgent = navigator.userAgent;
 window.isOldBrowser = false;
 //如果是
-if (userAgent.indexOf('MSIE') !== -1 || (!!window.ActiveXObject || "ActiveXObject" in window)) {
+//下面这个是微信内置浏览器的判断
+//Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36 NetType/WIFI MicroMessenger/7.0.20.1781(0x6700143B) WindowsWechat(0x6303004c)
+if (userAgent.indexOf('MSIE') !== -1 || (!!window.ActiveXObject || "ActiveXObject" in window) || userAgent.indexOf("WindowsWechat") !== -1) {
     window.isOldBrowser = true;
     console.log("老式浏览器.");
-    require(['common/scripts/jquery-lowVersion.js'],function(_jquery){
+    require(['common/scripts/jquery-lowVersion.js'], function (_jquery) {
         window.jquery = _jquery.default;
         window.$ = _jquery.default;
         initSys();
     });
-}else{
+} else {
     console.log("现代浏览器.");
     initSys();
 }

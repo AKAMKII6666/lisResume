@@ -45,13 +45,14 @@ const mainConfig = {
                 loader: 'url-loader',
                 options: {
                     name: '[path][name].[ext]',
-                    limit: 20480
+                    limit: 10240,
+                    esModule: false
                 }
             }, {
                 test: /\.vue$/,
                 loader: 'vue-loader'
             }, {
-                test: /\.(obj|fbx|wav)$/,
+                test: /\.(obj|fbx|wav|mp4)$/,
                 loader: 'file-loader',
                 options: {
                     name: '[path][name].[ext]',

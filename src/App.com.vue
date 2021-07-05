@@ -132,15 +132,15 @@
         nBtn: ['不会', 'No'],
         alt1: [
           `
-                                                                            <div>请联系我，我将安排行程参与面试:</div>
-                                                                            <div>Tel:18681449125</div>
-                                                                            <div>qq:281191341</div>
-                                                          `,
+                                                                                  <div>请联系我，我将安排行程参与面试:</div>
+                                                                                  <div>Tel:18681449125</div>
+                                                                                  <div>qq:281191341</div>
+                                                                `,
           `
-                                                                            <div>Please contact me, I will arrange the schedule to participate in the interview:</div>
-                                                                            <div>Tel:18681449125</div>
-                                                                            <div>qq:281191341</div>
-                                                          `,
+                                                                                  <div>Please contact me, I will arrange the schedule to participate in the interview:</div>
+                                                                                  <div>Tel:18681449125</div>
+                                                                                  <div>qq:281191341</div>
+                                                                `,
         ],
         alt2: [
           `感谢您花时间阅读我的简历，我会更加努力，将来有机会再合作!`,
@@ -150,7 +150,6 @@
 
       //一旦挂载成功后，就可以开始计时，如果浏览超过十分钟就弹出对话框
       setTimeout(function () {
-        debugger
         var w = new window.sys.window({
           //标题
           title: lanText.title[sys.langConfig],

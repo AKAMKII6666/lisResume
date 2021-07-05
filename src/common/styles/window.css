@@ -123,13 +123,14 @@
 		box-shadow: 0px 0px 0.25rem rgba(0,0,0,0.5);
 	}
 	.b-ballWindow .b-title{
-		height:1.0rem;
+		height: 1.0rem;
 		line-height: 1.0rem;
-		background-color: #efefef;
+		background-color: rgb(0,0,0,.54);
+		color: #fff;
 	}
 	.b-ballWindow .b-title span{
 		font-size: 0.36rem;
-		color:#545454;
+		color:#fff;
 		text-indent: 0.235rem;
 	}
 	.b-ballWindow .b-title label{
@@ -141,14 +142,14 @@
 	}
 	.b-ballWindow .b-window-container{
 		font-size: 0.3rem;
-		color:#545454;
+		color:#fff;
 		padding:0.15rem 0.45rem;
 	}
 	.b-w-buttonContainer{
 		height:2.1rem;
 		min-height: 0px;
 		padding:0rem 0.395rem 0rem 0.395rem;
-		background-color: #efefef;
+		background-color: rgb(0,0,0,.54);
 		overflow: hidden;
 	}
 
@@ -159,7 +160,7 @@
 
 	.b-w-b{
 		width: 100%;
-		background-color: #66b31a;
+		background-color: rgb(0,0,0,.61);
 		background-image: none;
 		display: block;
 		margin: 0px;
