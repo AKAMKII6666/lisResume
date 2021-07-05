@@ -106,7 +106,7 @@ var _mobileAdp = function (_options) {
             var e, i, t, a, n = "", r = !1;
             switch (o.mode) {
                 case "apple":
-                    n = "width=" + o.uWidth + ", user-scalable=no";
+                    n = "width=" + self.designWidth + ", user-scalable=no; user-scalable=0";
                     break;
                 case "android-2.2":
                     d.dWidth || (o.dWidth = 2 == o.ratio ? 720 : 1.5 == o.ratio ? 480 : 1 == o.ratio ? 320 : .75 == o.ratio ? 240 : 480),
@@ -123,6 +123,7 @@ var _mobileAdp = function (_options) {
             }
             t = document.querySelector("meta[name='viewport']") || document.createElement("meta"), t.name = "viewport",
                 t.content = n, a = document.getElementsByTagName("head"), a.length > 0 && a[0].appendChild(t)
+
         }
         function t() {
             var d = "";

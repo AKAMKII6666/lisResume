@@ -1,17 +1,25 @@
 <template>
   <div
-    class="mainContainer tele"
-    ref="mainContainer"
+    class="c-outside"
     :style="{
-      top: top + 'px',
-      display: display,
       height: height + 'px',
       backgroundColor: background_color,
     }"
   >
-    <div class="selfdis" ref="selfdis"></div>
+    <div
+      class="mainContainer tele"
+      ref="mainContainer"
+      :style="{
+        top: top + 'px',
+        display: display,
+        height: height + 'px',
+        backgroundColor: background_color,
+      }"
+    >
+      <div class="selfdis" ref="selfdis"></div>
 
-    <div class="scan" ref="scan"></div>
+      <div class="scan" ref="scan"></div>
+    </div>
   </div>
 </template>
 
@@ -188,6 +196,7 @@
     background-image: url('comImg/screen.png')
     background-position: center
     background-repeat: no-repeat
+    position: absolute
 
     div.scan
       height: 100%

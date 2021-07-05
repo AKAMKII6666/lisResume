@@ -1,8 +1,8 @@
 <template>
   <div class="totalContainer">
-    <end ref="end"></end>
     <skills ref="skills"></skills>
     <tele-animation ref="teleAnimation"></tele-animation>
+    <end ref="end"></end>
     <work-record ref="workRecord"></work-record>
     <works ref="works"></works>
     <persional-infomation ref="persionalInfomation"></persional-infomation>
@@ -16,19 +16,8 @@
   </div>
 </template>
 <script>
-  //引入全局css
-  import 'common/common.styl'
-  import langSwitcher from './compoment/mobile/langSwitcher.vue'
-  import end from './compoment/mobile/end.vue'
-  import workRecord from './compoment/mobile/workRecord.vue'
-  import works from './compoment/mobile/works.vue'
-  import teleAnimation from './compoment/mobile/teleAnimation.vue'
-  import skills from './compoment/mobile/skills.vue'
-  import persionalInfomation from './compoment/mobile/persionalInfomation.vue'
-  import into from './compoment/mobile/into.vue'
-  //导入触摸控制器
-  import 'common/com/touchController.js'
-  import _mainController from './compoment/mobile/maincontroller.js'
+  //初始化手机端/电脑端选择器
+  import _mobileSwitcher from './common/com/mobileSwitcher.js'
   import _mobileAdp from './common/com/mobileAdp.js'
 
   //初始化分辨率适配
@@ -42,6 +31,29 @@
     vCallBack: function () {},
   })
   mobileAdp.init()
+
+  if (process.env.NODE_ENV === 'production') {
+    var mobileSwitcher = new _mobileSwitcher({
+      mobileLink: 'http://106.13.41.183/mobile/',
+      pcLink: 'http://106.13.41.183/pc/',
+      isMobileInv: true,
+    })
+    mobileSwitcher.init()
+  }
+
+  //引入全局css
+  import 'common/common.styl'
+  import langSwitcher from './compoment/mobile/langSwitcher.vue'
+  import end from './compoment/mobile/end.vue'
+  import workRecord from './compoment/mobile/workRecord.vue'
+  import works from './compoment/mobile/works.vue'
+  import teleAnimation from './compoment/mobile/teleAnimation.vue'
+  import skills from './compoment/mobile/skills.vue'
+  import persionalInfomation from './compoment/mobile/persionalInfomation.vue'
+  import into from './compoment/mobile/into.vue'
+  //导入触摸控制器
+  import 'common/com/touchController.js'
+  import _mainController from './compoment/mobile/maincontroller.js'
 
   export default {
     name: 'App',
@@ -84,15 +96,15 @@
         nBtn: ['不会', 'No'],
         alt1: [
           `
-                                                                                      <div>请联系我，我将安排行程参与面试:</div>
-                                                                                      <div>Tel:18681449125</div>
-                                                                                      <div>qq:281191341</div>
-                                                                    `,
+                                                                                                                <div>请联系我，我将安排行程参与面试:</div>
+                                                                                                                <div>Tel:18681449125</div>
+                                                                                                                <div>qq:281191341</div>
+                                                                                              `,
           `
-                                                                                      <div>Please contact me, I will arrange the schedule to participate in the interview:</div>
-                                                                                      <div>Tel:18681449125</div>
-                                                                                      <div>qq:281191341</div>
-                                                                    `,
+                                                                                                                <div>Please contact me, I will arrange the schedule to participate in the interview:</div>
+                                                                                                                <div>Tel:18681449125</div>
+                                                                                                                <div>qq:281191341</div>
+                                                                                              `,
         ],
         alt2: [
           `感谢您花时间阅读我的简历，我会更加努力，将来有机会再合作!`,
@@ -170,6 +182,7 @@
     background-color: #fff
     position: absolute
     width: 100%
+    transform-origin: center center
 
   .hInfo
     display: none

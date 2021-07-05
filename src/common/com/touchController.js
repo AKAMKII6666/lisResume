@@ -123,9 +123,9 @@ document.addEventListener('touchmove', function (touchEvent) {
         }
     }
     try {
-        //touchEvent.preventDefault()
         touchEvent.cancelBubble = true
         touchEvent.stopPropagation();
+        touchEvent.preventDefault()
     } catch (_e) { }
 }, false);
 

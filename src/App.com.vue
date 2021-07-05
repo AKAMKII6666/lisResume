@@ -62,6 +62,17 @@
 </template>
 
 <script>
+  //初始化手机端/电脑端选择器
+  import _mobileSwitcher from './common/com/mobileSwitcher.js'
+  if (process.env.NODE_ENV === 'production') {
+    var mobileSwitcher = new _mobileSwitcher({
+      mobileLink: 'http://106.13.41.183/mobile/',
+      pcLink: 'http://106.13.41.183/pc/',
+      isMobileInv: false,
+    })
+    mobileSwitcher.init()
+  }
+
   //引入全局css
   import 'common/common.styl'
   import langSwitcher from './compoment/computer/langSwitcher.vue'
@@ -132,15 +143,15 @@
         nBtn: ['不会', 'No'],
         alt1: [
           `
-                                                                                  <div>请联系我，我将安排行程参与面试:</div>
-                                                                                  <div>Tel:18681449125</div>
-                                                                                  <div>qq:281191341</div>
-                                                                `,
+                                                                                        <div>请联系我，我将安排行程参与面试:</div>
+                                                                                        <div>Tel:18681449125</div>
+                                                                                        <div>qq:281191341</div>
+                                                                      `,
           `
-                                                                                  <div>Please contact me, I will arrange the schedule to participate in the interview:</div>
-                                                                                  <div>Tel:18681449125</div>
-                                                                                  <div>qq:281191341</div>
-                                                                `,
+                                                                                        <div>Please contact me, I will arrange the schedule to participate in the interview:</div>
+                                                                                        <div>Tel:18681449125</div>
+                                                                                        <div>qq:281191341</div>
+                                                                      `,
         ],
         alt2: [
           `感谢您花时间阅读我的简历，我会更加努力，将来有机会再合作!`,

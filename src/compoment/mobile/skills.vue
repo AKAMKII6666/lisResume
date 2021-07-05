@@ -1,169 +1,187 @@
 <template>
   <div
-    class="mainContainer sks"
-    ref="mainContainer"
+    class="c-outside-c"
     :style="{
-      top: top + 'px',
-      display: display,
       height: height + 'px',
       backgroundColor: background_color,
     }"
   >
-    <div class="scWindow" ref="scWindow">
-      <!--WEB前端技术栈-->
-      <div class="skillsContainer" ref="sk1">
-        <div class="skillsTitle">
-          <span>技能介绍</span>
-          <label>WEB前端技术栈</label>
-        </div>
-        <table class="skillsTable">
-          <tr>
-            <td>VUE + WEBPACK</td>
-            <td class="dw">精通</td>
-          </tr>
-          <tr>
-            <td>NODEJS & NPM</td>
-            <td>熟练</td>
-          </tr>
-          <tr>
-            <td>REQUIREJS</td>
-            <td>精通</td>
-          </tr>
-          <tr>
-            <td>JQUERY</td>
-            <td>精通</td>
-          </tr>
-          <tr>
-            <td>GIT</td>
-            <td>熟练</td>
-          </tr>
-          <tr>
-            <td>ELECTRON</td>
-            <td>精通</td>
-          </tr>
-          <tr>
-            <td>EXPRESS</td>
-            <td>熟练</td>
-          </tr>
-          <tr>
-            <td>D3JS</td>
-            <td>熟练</td>
-          </tr>
-          <tr>
-            <td>WEBGL</td>
-            <td>熟练</td>
-          </tr>
-          <tr>
-            <td>ThreeJs</td>
-            <td>熟练</td>
-          </tr>
-          <tr>
-            <td>HIGHCHARTS</td>
-            <td>精通</td>
-          </tr>
-          <tr>
-            <td>ASP.NET MVC</td>
-            <td>熟练</td>
-          </tr>
-          <tr>
-            <td>PHP</td>
-            <td>了解</td>
-          </tr>
-          <tr>
-            <td>REACTJS + WEBPACK</td>
-            <td>了解</td>
-          </tr>
-        </table>
-      </div>
-      <!--WEB前端技术栈-->
+    <div
+      class="c-outside"
+      :style="{
+        height: height + 'px',
+        backgroundColor: background_color,
+      }"
+    >
+      <div
+        class="mainContainer sks"
+        ref="mainContainer"
+        :style="{
+          top: top + 'px',
+          display: display,
+          height: height + 'px',
+          backgroundColor: background_color,
+        }"
+      >
+        <div class="scWindow" ref="scWindow">
+          <!--WEB前端技术栈-->
+          <div class="skillsContainer" ref="sk1">
+            <div class="skillsTitle">
+              <span>技能介绍</span>
+              <label>WEB前端技术栈</label>
+            </div>
+            <table class="skillsTable">
+              <tr>
+                <td>VUE + WEBPACK</td>
+                <td class="dw">精通</td>
+              </tr>
+              <tr>
+                <td>NODEJS & NPM</td>
+                <td>熟练</td>
+              </tr>
+              <tr>
+                <td>REQUIREJS</td>
+                <td>精通</td>
+              </tr>
+              <tr>
+                <td>JQUERY</td>
+                <td>精通</td>
+              </tr>
+              <tr>
+                <td>GIT</td>
+                <td>熟练</td>
+              </tr>
+              <tr>
+                <td>ELECTRON</td>
+                <td>精通</td>
+              </tr>
+              <tr>
+                <td>EXPRESS</td>
+                <td>熟练</td>
+              </tr>
+              <tr>
+                <td>D3JS</td>
+                <td>熟练</td>
+              </tr>
+              <tr>
+                <td>WEBGL</td>
+                <td>熟练</td>
+              </tr>
+              <tr>
+                <td>ThreeJs</td>
+                <td>熟练</td>
+              </tr>
+              <tr>
+                <td>HIGHCHARTS</td>
+                <td>精通</td>
+              </tr>
+              <tr>
+                <td>ASP.NET MVC</td>
+                <td>熟练</td>
+              </tr>
+              <tr>
+                <td>PHP</td>
+                <td>了解</td>
+              </tr>
+              <tr>
+                <td>REACTJS + WEBPACK</td>
+                <td>了解</td>
+              </tr>
+            </table>
+          </div>
+          <!--WEB前端技术栈-->
 
-      <!--后端技术栈-->
-      <div class="skillsContainer" ref="sk2">
-        <div class="skillsTitle">
-          <span>技能介绍</span>
-          <label>后端技术栈</label>
-        </div>
-        <table class="skillsTable">
-          <tr>
-            <td>.Net C#</td>
-            <td>熟练</td>
-          </tr>
-          <tr>
-            <td>NODEJS</td>
-            <td>熟练</td>
-          </tr>
-          <tr>
-            <td>MYSQL</td>
-            <td>熟练</td>
-          </tr>
-          <tr>
-            <td>ORACLE</td>
-            <td>熟练</td>
-          </tr>
-          <tr>
-            <td>SQLLITE</td>
-            <td>熟练</td>
-          </tr>
-          <tr>
-            <td>SQLSERVER</td>
-            <td>熟练</td>
-          </tr>
-          <tr>
-            <td>DOCKER/Radius</td>
-            <td>了解</td>
-          </tr>
-        </table>
-      </div>
-      <!--后端技术栈-->
+          <!--后端技术栈-->
+          <div class="skillsContainer" ref="sk2">
+            <div class="skillsTitle">
+              <span>技能介绍</span>
+              <label>后端技术栈</label>
+            </div>
+            <table class="skillsTable">
+              <tr>
+                <td>.Net C#</td>
+                <td>熟练</td>
+              </tr>
+              <tr>
+                <td>NODEJS</td>
+                <td>熟练</td>
+              </tr>
+              <tr>
+                <td>MYSQL</td>
+                <td>熟练</td>
+              </tr>
+              <tr>
+                <td>ORACLE</td>
+                <td>熟练</td>
+              </tr>
+              <tr>
+                <td>SQLLITE</td>
+                <td>熟练</td>
+              </tr>
+              <tr>
+                <td>SQLSERVER</td>
+                <td>熟练</td>
+              </tr>
+              <tr>
+                <td>DOCKER/Radius</td>
+                <td>了解</td>
+              </tr>
+            </table>
+          </div>
+          <!--后端技术栈-->
 
-      <!--能力总览-->
-      <div class="skillsContainer" ref="sk3">
-        <div class="skillsTitle">
-          <span>技能介绍</span>
-          <label>能力总览</label>
+          <!--能力总览-->
+          <div class="skillsContainer" ref="sk3">
+            <div class="skillsTitle">
+              <span>技能介绍</span>
+              <label>能力总览</label>
+            </div>
+            <table class="skillsTable tot">
+              <tr>
+                <td>VUE + WEBPACK 工作流搭建，生产环境建设及兼容性调整。</td>
+              </tr>
+              <tr>
+                <td>HTML CSS 重构及各种老旧浏览器或手机端兼容性适配。</td>
+              </tr>
+              <tr>
+                <td>2D 及 3D 图形展示，有大数据图形数据分析系统建设的经验。</td>
+              </tr>
+              <tr>
+                <td>有适配各种移动端分辨率的能力。</td>
+              </tr>
+              <tr>
+                <td>熟练设计小中大型项目程序架构的能力。</td>
+              </tr>
+              <tr>
+                <td>有ELECTRON构建桌面应用的能力。</td>
+              </tr>
+              <tr>
+                <td>
+                  有构建VUE/REQUIREJS/JQUERY/NODEJS公用组件的能力及文档能力。
+                </td>
+              </tr>
+              <tr>
+                <td>有前WEB页面访问速度优化的能力。</td>
+              </tr>
+              <tr>
+                <td>有美术设计能力，有PHOTOSHOP/Axure使用能力。</td>
+              </tr>
+              <tr>
+                <td>有交互设计能力。</td>
+              </tr>
+              <tr>
+                <td>GIT代码及主/分支管理的能力。</td>
+              </tr>
+              <tr>
+                <td>
+                  有技术自我学习能力，例如上面列表中列出“了解”的技术，都是有全面学习过，但是没机会使用的技术。
+                </td>
+              </tr>
+            </table>
+          </div>
+          <!--能力总览-->
         </div>
-        <table class="skillsTable tot">
-          <tr>
-            <td>VUE + WEBPACK 工作流搭建，生产环境建设及兼容性调整。</td>
-          </tr>
-          <tr>
-            <td>HTML CSS 重构及各种老旧浏览器或手机端兼容性适配。</td>
-          </tr>
-          <tr>
-            <td>2D 及 3D 图形展示，有大数据图形数据分析系统建设的经验。</td>
-          </tr>
-          <tr>
-            <td>有适配各种移动端分辨率的能力。</td>
-          </tr>
-          <tr>
-            <td>熟练设计小中大型项目程序架构的能力。</td>
-          </tr>
-          <tr>
-            <td>有ELECTRON构建桌面应用的能力。</td>
-          </tr>
-          <tr>
-            <td>有构建VUE/REQUIREJS/JQUERY/NODEJS公用组件的能力及文档能力。</td>
-          </tr>
-          <tr>
-            <td>有前WEB页面访问速度优化的能力。</td>
-          </tr>
-          <tr>
-            <td>有美术设计能力，有PHOTOSHOP/Axure使用能力。</td>
-          </tr>
-          <tr>
-            <td>有交互设计能力。</td>
-          </tr>
-          <tr>
-            <td>GIT代码及主/分支管理的能力。</td>
-          </tr>
-          <tr>
-            <td>
-              有技术自我学习能力，例如上面列表中列出“了解”的技术，都是有全面学习过，但是没机会使用的技术。
-            </td>
-          </tr>
-        </table>
       </div>
-      <!--能力总览-->
     </div>
   </div>
 </template>
@@ -249,16 +267,16 @@
       //发起上一个视图显示
       prev() {
         var prev = this._mainController.getPrev(this)
-        this._mainController.showView(prev)
+        this._mainController.showView(prev, 'fromNext')
       },
       //发起下一个视图显示
       next(_type) {
         if (_type === 'show') {
           var next = this._mainController.getNext(this)
-          this._mainController.showView(next)
+          this._mainController.showView(next, 'fromPrev')
         } else {
           var next = this._mainController.getNext(this)
-          this._mainController.hideView(next)
+          this._mainController.hideView(next, 'fromPrev')
         }
       },
       //滚动时的回调函数“钩子”
@@ -418,7 +436,24 @@
 </script>
 
 <style lang="stylus" >
+  .c-outside-c
+    width: 100%
+    height: 100%
+    overflow: hidden
+    position: absolute
+    top: 0
+    left: 0
+
+  .c-outside
+    width: 100%
+    height: 100%
+    overflow: hidden
+    position: relative
+    top: 0
+    left: 0
+
   .mainContainer.sks
+    position: absolute
     background-size: cover
     background-image: url('comImg/sc1Backgroundw.png')
     background-position: center
