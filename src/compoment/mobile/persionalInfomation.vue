@@ -108,16 +108,16 @@
       //发起上一个视图显示
       prev() {
         var prev = this._mainController.getPrev(this)
-        this._mainController.showView(prev)
+        this._mainController.showView(prev, 'fromNext')
       },
       //发起下一个视图显示
       next(_type) {
         if (_type === 'show') {
           var next = this._mainController.getNext(this)
-          this._mainController.showView(next)
+          this._mainController.showView(next, 'fromPrev')
         } else {
           var next = this._mainController.getNext(this)
-          this._mainController.hideView(next)
+          this._mainController.hideView(next, 'fromPrev')
         }
       },
       //滚动时的回调函数“钩子”

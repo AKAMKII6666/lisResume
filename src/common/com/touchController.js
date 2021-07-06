@@ -1,3 +1,9 @@
+/*!
+ * mobileSwitcher.js
+ * (c) 2011-2021 bobliao
+ * Released under the MIT License.
+ */
+
 import jquery from 'jquery';
 import 'jquery.easing';
 

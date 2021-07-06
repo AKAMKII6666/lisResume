@@ -1,3 +1,5 @@
+//将ajax请求器直接引入，不需要异步加载
+import _ajaxProxy from "./com/ajaxProxy";
 
 //公用函数集合
 var common = function (_config) {
@@ -9,6 +11,7 @@ var common = function (_config) {
     this.window = null;
     this.uiAudio = null;
     this.tips = null;
+    this.ajaxProxy = new _ajaxProxy();
     self.eventController = null;
     this.parent = this.config.parent;
 
@@ -31,6 +34,7 @@ var common = function (_config) {
 
     //初始化
     this.init = function (_callBack) {
+        this.ajaxProxy.init(this, this);
         //加载common拖挂的模块
         this.initModul(function () {
             _callBack();

@@ -1,3 +1,8 @@
+/*!
+ * mobileSwitcher.js
+ * (c) 2021-2021 bobliao
+ * Released under the MIT License.
+ */
 //手机端/电脑端选择器
 var _mobileSwitcher = function (_options) {
     var self = this;

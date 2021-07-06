@@ -1,7 +1,9 @@
 //导入vue
 import Vue from 'vue';
 import Router from 'vue-router';
+//电脑端
 //import App from './App.com.vue';
+//移动端
 import App from './App.mob.vue';
 import 'babel-polyfill';
 //导入公用组件
@@ -9,6 +11,9 @@ import jquery from 'jquery';
 import 'jquery.easing';
 import common from 'common/common.js';
 
+/**
+ * 初始化系统
+ */
 let initSys = function () {
     window.jquery = jquery;
     window.$ = jquery;

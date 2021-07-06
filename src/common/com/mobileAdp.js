@@ -1,9 +1,17 @@
-//移动端界面比例适配器
-//廖力编写
-//2021年总汇版本
-//本适配器可以不依赖任何库直接运行
-//建议在页面加载进来的第一时间完成适配
-//免得界面渲染完成后再适配引起页面抖动
+/*!
+ * mobileAdp.js
+ * (c) 2015-2021 bobliao
+ * Released under the MIT License.
+ */
+
+/*
+ * 移动端界面比例适配器
+ * 廖力编写
+ * 2021年总汇版本
+ * 本适配器可以不依赖任何库直接运行
+ * 建议在页面加载进来的第一时间完成适配
+ * 免得界面渲染完成后再适配引起页面抖动
+*/
 var _mobileAdp = function (_options) {
     var self = this;
 
@@ -104,6 +112,9 @@ var _mobileAdp = function (_options) {
         }
         function i() {
             var e, i, t, a, n = "", r = !1;
+            if (o.userAgent.indexOf('Pixel') !== -1) {
+                o.mode = 'apple';
+            }
             switch (o.mode) {
                 case "apple":
                     n = "width=" + self.designWidth + ", user-scalable=no; user-scalable=0";

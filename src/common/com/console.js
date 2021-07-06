@@ -1,15 +1,21 @@
+/*!
+ * console.js
+ * (c) 2013-2021 bobliao
+ * Released under the MIT License.
+ */
+
 import 'common/styles/console.css';
 
-var _console = function(_config){
+var _console = function (_config) {
     var self = this;
     self.parent = _config.parent;
     //选项参数
-    this.option= {
+    this.option = {
         //每条message之间的距离
         messagePadding: 10
     };
     //配置参数
-    var config= {
+    var config = {
         //指示在哪个元素上打印
         e: null,
         topMove: -50,
@@ -23,9 +29,9 @@ var _console = function(_config){
         closeBtn: true
     };
     //消息数组
-    this.logArray=[];
+    this.logArray = [];
     //初始化
-    this.write=function (_config) {
+    this.write = function (_config) {
         //请求模版
         var c = JSON.parse(JSON.stringify(config));
         //如果是竖屏 消息只停留两秒
@@ -34,7 +40,7 @@ var _console = function(_config){
         //}
         //配置信息
         if (typeof (_config) === 'string') {
-            this.config = $.extend(true, c, {m:_config});
+            this.config = $.extend(true, c, { m: _config });
         } else {
             this.config = $.extend(true, c, _config);
         }
@@ -48,7 +54,7 @@ var _console = function(_config){
         }
     };
     //在元素上打印一条信息
-    this.elementsPrint=function () {
+    this.elementsPrint = function () {
         //1.载入元素
         var elements = $(this.config.e);
         for (var i = 0; i < elements.length; i++) {
@@ -70,19 +76,19 @@ var _console = function(_config){
                 element.css('left', $(tElement).offset().left + 'px');
             }
 
-            element.animate({ top: $(element).offset().top + this.config.topMove, opacity: 0 },{
-                duration:this.config.time,
-                easing:'easeOutBack',
-                step:function(){
+            element.animate({ top: $(element).offset().top + this.config.topMove, opacity: 0 }, {
+                duration: this.config.time,
+                easing: 'easeOutBack',
+                step: function () {
                 },
-                complete:function(){
+                complete: function () {
                     $(this).remove();
                 }
             });
         }
     };
     //打印一条信息
-    this.print=function () {
+    this.print = function () {
         var self = this;
         //1.构建消息模型
         var messageModal = {
@@ -123,7 +129,7 @@ var _console = function(_config){
 
     };
     //计算该消息应该处于当前什么位置
-    this.printPosition=function (self) {
+    this.printPosition = function (self) {
         if (!this.removeFlg) { $(this.htmlElement).stop(); }
         //记录开关
         var recorderSwitch = false;
@@ -138,7 +144,7 @@ var _console = function(_config){
             }
         }
         var _self = self;
-        (function(self){
+        (function (self) {
 
             //检测到竖屏
             //if(_self.parent.parent.browserDetection.screenState === "V"){
@@ -161,45 +167,46 @@ var _console = function(_config){
             //		}
             //	});
             //}else{
-                //得到当前自己所处的top 并用动画将自己移动到该top处
-                $(self.htmlElement).animate({ top: $(window).height() - totalHeight, left: 0 },{duration:300,easing:'easeOutBack',
-                    step:function(){
-                        if (self.closeBut) {
-                            $(self.closeBut).css('top',$(this).position().top+5);
-                            $(self.closeBut).css('left',$(this).position().left+$(this).outerWidth() - $(self.closeBut).width()-5);
-                        }
-                    },
-                    complete:function(){
-                        if (self.closeBut) {
-                            $(self.closeBut).css('top',$(this).position().top+5);
-                            $(self.closeBut).css('left',$(this).position().left+$(this).outerWidth() - $(self.closeBut).width()-5);
-                            if($(self.closeBut).css('opacity') === "0"){
-                                $(self.closeBut).animate({opacity:1},200);
-                            }
+            //得到当前自己所处的top 并用动画将自己移动到该top处
+            $(self.htmlElement).animate({ top: $(window).height() - totalHeight, left: 0 }, {
+                duration: 300, easing: 'easeOutBack',
+                step: function () {
+                    if (self.closeBut) {
+                        $(self.closeBut).css('top', $(this).position().top + 5);
+                        $(self.closeBut).css('left', $(this).position().left + $(this).outerWidth() - $(self.closeBut).width() - 5);
+                    }
+                },
+                complete: function () {
+                    if (self.closeBut) {
+                        $(self.closeBut).css('top', $(this).position().top + 5);
+                        $(self.closeBut).css('left', $(this).position().left + $(this).outerWidth() - $(self.closeBut).width() - 5);
+                        if ($(self.closeBut).css('opacity') === "0") {
+                            $(self.closeBut).animate({ opacity: 1 }, 200);
                         }
                     }
-                });
+                }
+            });
             //}
         })(this);
     };
     //消息的初始位置设置
-    this.printSetStartPosition=function (self) {
+    this.printSetStartPosition = function (self) {
 
         //检测到竖屏
         //if(self.parent.parent.browserDetection.screenState === "V"){
         //	$(this.htmlElement).css('top', ($(window).height()/2 - $(this.htmlElement).height()/2) - self.option.messagePadding + "px");
         //    $(this.htmlElement).css('left', ($(window).width()/2 - $(this.htmlElement).width()/2)+ "px");
         //}else{
-            $(this.htmlElement).css('top', $(window).height() - $(this.htmlElement).height() - self.option.messagePadding + "px");
-            $(this.htmlElement).css('left', "-" + ($(this.htmlElement).width() + Number($(this.htmlElement).css('border-left-width').replace('px', '')) + Number($(this.htmlElement).css('border-right-width').replace('px', ''))) + "px");
+        $(this.htmlElement).css('top', $(window).height() - $(this.htmlElement).height() - self.option.messagePadding + "px");
+        $(this.htmlElement).css('left', "-" + ($(this.htmlElement).width() + Number($(this.htmlElement).css('border-left-width').replace('px', '')) + Number($(this.htmlElement).css('border-right-width').replace('px', ''))) + "px");
         //}
 
         if (this.closeBut) {
-            $(this.closeBut).css('opacity',0);
+            $(this.closeBut).css('opacity', 0);
         }
     };
     //开始消失的计时
-    this.printStartTimeOut=function (self) {
+    this.printStartTimeOut = function (self) {
         var thisItem = this;
         var that = self;
         this.timeOutInterval = setTimeout(function () {
@@ -207,13 +214,13 @@ var _console = function(_config){
         }, self.config.time);
     };
     //关闭一个项目
-    this.closeItem= function (self, thisItem, that) {
+    this.closeItem = function (self, thisItem, that) {
         thisItem.removeFlg = true;
 
 
         var elem = thisItem.htmlElement;
         var closeBut = thisItem.closeBut;
-        $(closeBut).fadeOut(200,function(){$(closeBut).remove();});
+        $(closeBut).fadeOut(200, function () { $(closeBut).remove(); });
         //检测到竖屏
         //if(self.parent.parent.browserDetection.screenState === "V"){
         //    $(elem).animate({ opacity: 0 },{duration:400,easing:'easeOutBack',
@@ -225,14 +232,15 @@ var _console = function(_config){
         //		}
         //	});
         //}else{
-            $(elem).animate({ left: -($(elem).outerWidth()) },{duration:400,easing:'easeOutBack',
-                step:function(){
-                    
-                },
-                complete:function(){
-                    $(elem).remove();
-                }
-            });
+        $(elem).animate({ left: -($(elem).outerWidth()) }, {
+            duration: 400, easing: 'easeOutBack',
+            step: function () {
+
+            },
+            complete: function () {
+                $(elem).remove();
+            }
+        });
         //}
 
         if (typeof self.logArray !== 'undefined' && typeof self.logArray.length !== 'undefined') {
@@ -247,15 +255,15 @@ var _console = function(_config){
         self.position();
     };
     //窗体改变大小时执行的方法
-    this.position= function () {
+    this.position = function () {
         for (var i = 0; i < this.logArray.length; i++) {
             this.logArray[i].setPosition();
         }
     };
     //获得元素
-    this.createHtmlElements=function () {
+    this.createHtmlElements = function () {
         if (this.config.e) {
-            return $('<div class="arrow-print-element" style=' + this.config.style +' ></div>').append(this.config.m);
+            return $('<div class="arrow-print-element" style=' + this.config.style + ' ></div>').append(this.config.m);
         } else {
             var borderColor = '';
             if (this.config.borderColor != '') {
