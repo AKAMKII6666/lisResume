@@ -2,7 +2,10 @@ const path = require('path');
 const vueLoaderPlugin = require('vue-loader/lib/plugin')
 const htmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-
+/**
+ * 给资源文件加上版本号
+ */
+const Version = (+new Date);
 console.log('+++++++++++++++++++++++++++++++++++++++')
 console.log(__dirname)
 console.log(path.resolve(__dirname, '../src/common/models'))
@@ -44,7 +47,7 @@ const mainConfig = {
                 test: /\.(jpg|jpeg|gif|png|svg)$/,
                 loader: 'url-loader',
                 options: {
-                    name: '[path][name].[ext]',
+                    name: '[path][name].[ext]?_v=' + Version,
                     limit: 10240,
                     esModule: false
                 }
@@ -55,7 +58,7 @@ const mainConfig = {
                 test: /\.(obj|fbx|wav|mp4)$/,
                 loader: 'file-loader',
                 options: {
-                    name: '[path][name].[ext]',
+                    name: '[path][name].[ext]?_v=' + Version,
                 }
             }, {
                 test: /\.json$/,
@@ -63,7 +66,7 @@ const mainConfig = {
                 type: 'javascript/auto',
                 options: {
                     name() {
-                        return '[path][name].[ext]';
+                        return '[path][name].' + Version + '.[ext]'
                     },
                 },
             }

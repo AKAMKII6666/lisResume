@@ -1,5 +1,5 @@
 //将ajax请求器直接引入，不需要异步加载
-import _ajaxProxy from "./com/ajaxProxy";
+import _ajaxProxy from "./com/ajaxProxy.js";
 
 //公用函数集合
 var common = function (_config) {
@@ -43,7 +43,7 @@ var common = function (_config) {
 
     //初始化控制台插件
     this.initModul = function (_callBack) {
-        //异步加载一下组件，避免网络阻塞
+        //异步加载这些公用组件，避免网络阻塞
         require(['./com/console.js', './com/window.js', './com/uiAudio.js'], function (_console, _window, _uiAudio) {
             _console = _console.default;
             _window = _window.default;

@@ -13,68 +13,108 @@
 <script>
   import Router from 'vue-router'
 
-  import chnAbout from './contents/chn/about.vue'
-  import chnemploymentRecord from './contents/chn/employmentRecord.vue'
-  import chnmySkills from './contents/chn/mySkills.vue'
-  import chnpersionalInfomation from './contents/chn/persionalInfomation.vue'
-  import chnqualifications from './contents/chn/qualifications.vue'
-  import chnworksArticles from './contents/chn/worksArticles.vue'
-  import engAbout from './contents/eng/about.vue'
-  import engemploymentRecord from './contents/eng/employmentRecord.vue'
-  import engmySkills from './contents/eng/mySkills.vue'
-  import engpersionalInfomation from './contents/eng/persionalInfomation.vue'
-  import engqualifications from './contents/eng/qualifications.vue'
-  import engworksArticles from './contents/eng/worksArticles.vue'
-
+  /**
+   * 这里之前是在打包的时候直接封装进来的，也就是和main直接封装在一块儿的
+   * 现在改成异步调用，因为这样的话可以节省一些main.js的大小
+   * 因为现在的服务器带宽确实不是很大，所以采取了这样的策略
+   */
   const smallRouter = new Router({
     routes: [
       {
         path: '/chn/about',
-        component: chnAbout,
+        component: function () {
+          return new Promise(function (_reslove, _reject) {
+            require(['./contents/chn/about.vue'], _reslove)
+          })
+        },
       },
       {
         path: '/chn/employment_record',
-        component: chnemploymentRecord,
+        component: function () {
+          return new Promise(function (_reslove, _reject) {
+            require(['./contents/chn/employmentRecord.vue'], _reslove)
+          })
+        },
       },
       {
         path: '/chn/my_skills',
-        component: chnmySkills,
+        component: function () {
+          return new Promise(function (_reslove, _reject) {
+            require(['./contents/chn/mySkills.vue'], _reslove)
+          })
+        },
       },
       {
         path: '/chn/persional_infomation',
-        component: chnpersionalInfomation,
+        component: function () {
+          return new Promise(function (_reslove, _reject) {
+            require(['./contents/chn/persionalInfomation.vue'], _reslove)
+          })
+        },
       },
       {
         path: '/chn/Qualifications',
-        component: chnqualifications,
+        component: function () {
+          return new Promise(function (_reslove, _reject) {
+            require(['./contents/chn/qualifications.vue'], _reslove)
+          })
+        },
       },
       {
         path: '/chn/works_articles',
-        component: chnworksArticles,
+        component: function () {
+          return new Promise(function (_reslove, _reject) {
+            require(['./contents/chn/worksArticles.vue'], _reslove)
+          })
+        },
       },
       {
         path: '/eng/about',
-        component: engAbout,
+        component: function () {
+          return new Promise(function (_reslove, _reject) {
+            require(['./contents/eng/about.vue'], _reslove)
+          })
+        },
       },
       {
         path: '/eng/employment_record',
-        component: engemploymentRecord,
+        component: function () {
+          return new Promise(function (_reslove, _reject) {
+            require(['./contents/eng/employmentRecord.vue'], _reslove)
+          })
+        },
       },
       {
         path: '/eng/my_skills',
-        component: engmySkills,
+        component: function () {
+          return new Promise(function (_reslove, _reject) {
+            require(['./contents/eng/mySkills.vue'], _reslove)
+          })
+        },
       },
       {
         path: '/eng/persional_infomation',
-        component: engpersionalInfomation,
+        component: function () {
+          return new Promise(function (_reslove, _reject) {
+            require(['./contents/eng/persionalInfomation.vue'], _reslove)
+          })
+        },
       },
       {
         path: '/eng/Qualifications',
-        component: engqualifications,
+        component: function () {
+          return new Promise(function (_reslove, _reject) {
+            require(['./contents/eng/qualifications.vue'], _reslove)
+          })
+        },
       },
       {
         path: '/eng/works_articles',
-        component: engworksArticles,
+        component: function () {
+          return new Promise(function (_reslove, _reject) {
+            require(['./contents/eng/worksArticles.vue'], _reslove)
+          })
+        },
       },
     ],
   })
