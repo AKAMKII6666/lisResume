@@ -37,6 +37,7 @@ let initSys = function () {
 
     //配置发布后屏蔽vue-devTools
     let isDev_mode = true;
+    //用SYS_MODE也可以拿到另一个环境变量，粒度更细，包含dev,test,gray,rel
     //判断当前环境是否为生产环境
     if (process.env.NODE_ENV === 'production') {
         isDev_mode = false;

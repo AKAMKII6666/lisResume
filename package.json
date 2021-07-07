@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack serve --config ./webpack.config/dev.js",
-    "localTest": "webpack --config ./webpack.config/localTest.js"
+    "dev": "cross-env SYS_MODE=dev webpack serve --config ./webpack.config/dev.js",
+    "localTest": "cross-env SYS_MODE=test webpack --config ./webpack.config/localTest.js",
+    "grayRelease": "cross-env SYS_MODE=gray webpack --config ./webpack.config/grayRelease.js",
+    "onlineRelease": "cross-env SYS_MODE=rel webpack --config ./webpack.config/onlineRelease.js"
   },
   "keywords": [],
   "author": "",
@@ -19,11 +21,13 @@
     "babel-loader": "^8.2.2",
     "babel-polyfill": "^6.26.0",
     "clean-webpack-plugin": "^4.0.0-alpha.0",
+    "cross-env": "^7.0.3",
     "css-loader": "^5.2.6",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.3.1",
     "jquery": "^3.6.0",
     "jquery.easing": "^1.4.1",
+    "json-loader": "^0.5.7",
     "pixi": "^0.3.1",
     "postcss": "^8.3.5",
     "postcss-loader": "^6.1.0",

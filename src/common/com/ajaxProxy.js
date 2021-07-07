@@ -17,12 +17,22 @@ var _ajaxProxy = function (_config) {
     this.ajaxPort = '//192.168.0.8:2333/';
 
     //调试环境
-    if (process.env.NODE_ENV === 'development') {
+    if (SYS_MODE === 'dev') {
         this.ajaxPort = '//192.168.0.8:2333/';
     }
 
-    //发布环境
-    if (process.env.NODE_ENV === 'production') {
+    //本地测试发布环境
+    if (SYS_MODE === 'test') {
+        this.ajaxPort = '//192.168.0.8:2333/';
+    }
+
+    //线上灰度环境
+    if (SYS_MODE === 'gray') {
+        this.ajaxPort = '//192.168.0.8:2333/';
+    }
+
+    //线上正式版本
+    if (SYS_MODE === 'rel') {
         this.ajaxPort = '//192.168.0.8:2333/';
     }
 
