@@ -10,7 +10,7 @@ const modelsMap = {
     app: app,
     Dog: Dog,
     Tools: Tools,
-    Books: Books,
+    Boooks: Books,
     banboo: banboo,
     Screw: Screw,
     Guitar: Guitar,
