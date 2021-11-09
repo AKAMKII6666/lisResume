@@ -82,14 +82,14 @@ const mainConfig = {
         /**
          * 增加环境变量
          */
-        new webpack.DefinePlugin({
-            /**
-             * 这里定义的环境变量可以直接在业务代码里拿到，
-             * 属于是webpack直接打印上去的，
-             * 并不是写在业务代码逻辑里的。
-             */
-            'SYS_MODE': JSON.stringify(process.env.SYS_MODE)
-        }),
+        //new webpack.DefinePlugin({
+        //    /**
+        //     * 这里定义的环境变量可以直接在业务代码里拿到，
+        //     * 属于是webpack直接打印上去的，
+        //     * 并不是写在业务代码逻辑里的。
+        //     */
+            //'SYS_MODE': JSON.stringify(process.env.SYS_MODE)
+        //}),
     ],
     resolve: {
         //路径别名配置

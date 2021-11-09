@@ -1,13 +1,13 @@
 {
-  "name": "MyResume",
+  "name": "mr",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "cross-env SYS_MODE=dev webpack serve --config ./webpack.config/dev.js",
-    "localTest": "cross-env SYS_MODE=test webpack --config ./webpack.config/localTest.js",
-    "grayRelease": "cross-env SYS_MODE=gray webpack --config ./webpack.config/grayRelease.js",
-    "onlineRelease": "cross-env SYS_MODE=rel webpack --config ./webpack.config/onlineRelease.js"
+    "dev": "webpack serve --config ./webpack.config/dev.js",
+    "localTest": "webpack --config ./webpack.config/localTest.js",
+    "grayRelease": "webpack --config ./webpack.config/grayRelease.js",
+    "onlineRelease": "webpack --config ./webpack.config/onlineRelease.js"
   },
   "keywords": [],
   "author": "",

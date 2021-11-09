@@ -343,8 +343,6 @@ let _mainController = (function ($, jQuery) {
                     item.view.currTotalHeight = item.view.totalHeight / item.view.scale;
                     //算出总贞数
                     item.view.totalFrames = Number((item.view.totalHeight / item.view.sfHeight).toFixed(0));
-
-
                 }
                 item.resize();
             }
