@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title></title>
+		<script>
+			(function() {
+				if (
+					!/Android|webOS|iPhone|iPad|Windows Phone|iPod|BlackBerry|SymbianOS|Nokia|Mobile|Opera Mini/i.test(
+						navigator.userAgent
+					)
+				) {
+					window.location.href = "/pc/";
+				} else {
+					window.location.href = "/mobile/";
+				}
+			})();
+		</script>
+	</head>
+	<body></body>
+</html>
