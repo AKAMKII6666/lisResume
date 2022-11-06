@@ -9,6 +9,7 @@ specifiers:
   babel-loader: ^8.2.2
   babel-polyfill: ^6.26.0
   clean-webpack-plugin: ^4.0.0-alpha.0
+  compression-webpack-plugin: ^10.0.0
   cross-env: ^7.0.3
   css-loader: ^5.2.6
   css-minimizer-webpack-plugin: ^4.2.2
@@ -50,6 +51,7 @@ devDependencies:
   babel-loader: 8.2.5_6zc4kxld457avlfyhj3lzsljlm
   babel-polyfill: 6.26.0
   clean-webpack-plugin: 4.0.0_webpack@5.74.0
+  compression-webpack-plugin: 10.0.0_webpack@5.74.0
   cross-env: 7.0.3
   css-loader: 5.2.7_webpack@5.74.0
   css-minimizer-webpack-plugin: 4.2.2_webpack@5.74.0
@@ -2323,6 +2325,17 @@ packages:
     engines: {node: '>= 0.6'}
     dependencies:
       mime-db: 1.52.0
+    dev: true
+
+  /compression-webpack-plugin/10.0.0_webpack@5.74.0:
+    resolution: {integrity: sha512-wLXLIBwpul/ALcm7Aj+69X0pYT3BYt6DdPn3qrgBIh9YejV9Bju9ShhlAsjujLyWMo6SAweFIWaUoFmXZNuNrg==}
+    engines: {node: '>= 14.15.0'}
+    peerDependencies:
+      webpack: ^5.1.0
+    dependencies:
+      schema-utils: 4.0.0
+      serialize-javascript: 6.0.0
+      webpack: 5.74.0_webpack-cli@4.10.0
     dev: true
 
   /compression/1.7.4_supports-color@6.1.0:

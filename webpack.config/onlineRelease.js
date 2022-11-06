@@ -4,6 +4,7 @@ const merge = require("webpack-merge");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const webpack = require("webpack");
 const TerserPlugin = require("terser-webpack-plugin");
+const CompressionWebpackPlugin = require("compression-webpack-plugin");
 
 /**
  * 给打包的主/分支文件加上版本号
@@ -87,6 +88,12 @@ var devConfig = {
 			 * 并不是写在业务代码逻辑里的。
 			 */
 			SYS_MODE: JSON.stringify("rel"),
+		}),
+		new CompressionWebpackPlugin({
+			algorithm: "gzip",
+			test: /\.(js|css|json|html)(\?.*)?$/i,
+			threshold: 10240, // 大于10kb的才被压缩
+			minRatio: 0.8, //压缩比例
 		}),
 	],
 	cache: {
