@@ -20,6 +20,7 @@
 </template>
 
 <script>
+import _mobileAdp from "./common/com/mobileAdp.js";
 //初始化手机端/电脑端选择器
 import _mobileSwitcher from "./common/com/mobileSwitcher.js";
 if (process.env.NODE_ENV === "production") {
@@ -41,6 +42,18 @@ import contentsViewer from "./compoment/computer/contentsViewer.vue";
 //场景处理器
 const senceProsesser = require("common/models/senceProsesser.js").default.senceProsesser;
 
+//初始化分辨率适配
+let mobileAdp = new _mobileAdp({
+	fontSize: 14,
+	designWidth: 1920,
+	designHeight: 1080,
+	//横屏回调函数
+	hCallBack: function () {},
+	//竖屏回调函数
+	vCallBack: function () {},
+});
+mobileAdp.init();
+
 var computerUi = {
 	name: "App",
 	//组件挂载成功时执行
@@ -49,31 +62,31 @@ var computerUi = {
 		senceProsesser(selfApp);
 		if (window.navigator.language === "zh" || window.navigator.language == "zh-CN") {
 			selfApp.changeLang(window.sys.langList[0]);
-			var r = function() {
+			var r = function () {
 				console.write("系统已经为您选择了中文作为浏览语言..");
 				$(document).unbind("click", r);
 			};
 			$(document).click(r);
 		} else {
 			selfApp.changeLang(window.sys.langList[1]);
-			var r = function() {
+			var r = function () {
 				console.write("System Using ENGLISH to show contents");
 				$(document).unbind("click", r);
 			};
 			$(document).click(r);
 		}
-		var k = function() {
+		var k = function () {
 			console.write("感谢您浏览我的简历！");
 
 			if (window.isOldBrowser) {
-				setTimeout(function() {
+				setTimeout(function () {
 					console.write(
 						"您的浏览器无法展示3D场景，建议更换成Chrome浏览器或者Edge浏览器!"
 					);
 				}, 1000);
 			} else {
 				if (window.gCardLevel === "mid" || window.gCardLevel === "low") {
-					setTimeout(function() {
+					setTimeout(function () {
 						console.write("点击右上角的按钮可以配置3D背景的质量!");
 					}, 2000);
 				}
@@ -97,15 +110,15 @@ var computerUi = {
 			nBtn: ["不会", "No"],
 			alt1: [
 				`
-                                                                                              <div>请联系我，我将安排行程参与面试:</div>
-                                                                                              <div>Tel:18681449125</div>
-                                                                                              <div>qq:281191341</div>
-                                                                            `,
+				<div>请联系我，我将安排行程参与面试:</div>
+				<div>Tel:18681449125</div>
+				<div>qq:281191341</div>
+				`,
 				`
-                                                                                              <div>Please contact me, I will arrange the schedule to participate in the interview:</div>
-                                                                                              <div>Tel:18681449125</div>
-                                                                                              <div>qq:281191341</div>
-                                                                            `,
+				<div>Please contact me, I will arrange the schedule to participate in the interview:</div>
+				<div>Tel:18681449125</div>
+				<div>qq:281191341</div>
+				`,
 			],
 			alt2: [
 				`感谢您花时间阅读我的简历，我会更加努力，将来有机会再合作!`,
@@ -114,7 +127,7 @@ var computerUi = {
 		};
 
 		//一旦挂载成功后，就可以开始计时，如果浏览超过十分钟就弹出对话框
-		setTimeout(function() {
+		setTimeout(function () {
 			var w = new window.sys.window({
 				//标题
 				title: lanText.title[sys.langConfig],
@@ -132,14 +145,14 @@ var computerUi = {
 					arr: [
 						{
 							name: lanText.yBtn[sys.langConfig],
-							callBack: function() {
+							callBack: function () {
 								alt(lanText.alt1[sys.langConfig]);
 								w.close();
 							},
 						},
 						{
 							name: lanText.nBtn[sys.langConfig],
-							callBack: function() {
+							callBack: function () {
 								alt(lanText.alt2[sys.langConfig]);
 								w.close();
 							},
@@ -147,7 +160,7 @@ var computerUi = {
 					],
 				},
 				//关闭回调
-				closeCall: function() {},
+				closeCall: function () {},
 			});
 
 			w.open();
@@ -220,7 +233,7 @@ var computerUi = {
 			if (typeof window.loadTimmer !== "undefined") {
 				clearTimeout(window.loadTimmer);
 			}
-			window.loadTimmer = setTimeout(function() {
+			window.loadTimmer = setTimeout(function () {
 				if (
 					window.sences[_item.sence].player === null &&
 					typeof window.sences[_item.sence].loadState === "undefined"
@@ -235,7 +248,7 @@ var computerUi = {
 			this.$refs.contentsviewer.redirct(_item);
 		},
 		hideContent() {
-			this.$refs.contentsviewer.hide(function() {});
+			this.$refs.contentsviewer.hide(function () {});
 		},
 		mOver() {
 			this.$refs.reMenu.menuOut();

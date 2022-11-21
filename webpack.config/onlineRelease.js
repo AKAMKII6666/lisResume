@@ -70,12 +70,24 @@ var devConfig = {
 					minChunks: 2,
 					priority: -20,
 				},
-				defaultVendors: {
-					idHint: "vendors",
-					//复用其他chunk内已拥有的模块
-					reuseExistingChunk: true,
-					test: /[\\/]node_modules[\\/]/i,
-					priority: -10,
+				/**
+				 * 用这个配置强制将node_modules中的内容单独拆分成一个chunk
+				 * 这样一来，客户端上的node_modules的chunk缓存就不需要频繁更新，内容更新才更新
+				 */
+				vendors: {
+					idHint: "node_modules",
+					/**
+					 * 测试规则，现在测试规则就是将node_modules单独拆出来
+					 */
+					test: /[\\/]node_modules[\\/]/,
+					/**
+					 * 最小引用单位
+					 */
+					minChunks: 1,
+					/**
+					 * 最大分包尺寸
+					 */
+					minSize: 0,
 				},
 			},
 		},

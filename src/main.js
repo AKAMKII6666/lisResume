@@ -21,16 +21,16 @@ import common from "common/common.js";
 /**
  * 初始化系统
  */
-let initSys = function() {
+let initSys = function () {
 	//将公用组件初始化
 	window.jquery = jquery;
 	window.$ = jquery;
 	window.sys = new common();
 	//公用函数加载成功
-	window.sys.init(function() {
+	window.sys.init(function () {
 		//完成公用组件的载入
 		//console.write('系统已经载入完成.');
-		$(window).resize(function() {
+		$(window).resize(function () {
 			sys.console.position();
 		});
 	});
@@ -78,7 +78,7 @@ if (
 ) {
 	window.isOldBrowser = true;
 	console.log("老式浏览器.");
-	require(["common/scripts/jquery-lowVersion.js"], function(_jquery) {
+	require(["common/scripts/jquery-lowVersion.js"], function (_jquery) {
 		window.jquery = _jquery.default;
 		window.$ = _jquery.default;
 		initSys();

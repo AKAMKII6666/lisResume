@@ -22,96 +22,96 @@ const smallRouter = new Router({
 	routes: [
 		{
 			path: "/chn/about",
-			component: function() {
-				return new Promise(function(_reslove, _reject) {
+			component: function () {
+				return new Promise(function (_reslove, _reject) {
 					require(["./contents/chn/about.vue"], _reslove);
 				});
 			},
 		},
 		{
 			path: "/chn/employment_record",
-			component: function() {
-				return new Promise(function(_reslove, _reject) {
+			component: function () {
+				return new Promise(function (_reslove, _reject) {
 					require(["./contents/chn/employmentRecord.vue"], _reslove);
 				});
 			},
 		},
 		{
 			path: "/chn/my_skills",
-			component: function() {
-				return new Promise(function(_reslove, _reject) {
+			component: function () {
+				return new Promise(function (_reslove, _reject) {
 					require(["./contents/chn/mySkills.vue"], _reslove);
 				});
 			},
 		},
 		{
 			path: "/chn/persional_infomation",
-			component: function() {
-				return new Promise(function(_reslove, _reject) {
+			component: function () {
+				return new Promise(function (_reslove, _reject) {
 					require(["./contents/chn/persionalInfomation.vue"], _reslove);
 				});
 			},
 		},
 		{
 			path: "/chn/Qualifications",
-			component: function() {
-				return new Promise(function(_reslove, _reject) {
+			component: function () {
+				return new Promise(function (_reslove, _reject) {
 					require(["./contents/chn/qualifications.vue"], _reslove);
 				});
 			},
 		},
 		{
 			path: "/chn/works_articles",
-			component: function() {
-				return new Promise(function(_reslove, _reject) {
+			component: function () {
+				return new Promise(function (_reslove, _reject) {
 					require(["./contents/chn/worksArticles.vue"], _reslove);
 				});
 			},
 		},
 		{
 			path: "/eng/about",
-			component: function() {
-				return new Promise(function(_reslove, _reject) {
+			component: function () {
+				return new Promise(function (_reslove, _reject) {
 					require(["./contents/eng/about.vue"], _reslove);
 				});
 			},
 		},
 		{
 			path: "/eng/employment_record",
-			component: function() {
-				return new Promise(function(_reslove, _reject) {
+			component: function () {
+				return new Promise(function (_reslove, _reject) {
 					require(["./contents/eng/employmentRecord.vue"], _reslove);
 				});
 			},
 		},
 		{
 			path: "/eng/my_skills",
-			component: function() {
-				return new Promise(function(_reslove, _reject) {
+			component: function () {
+				return new Promise(function (_reslove, _reject) {
 					require(["./contents/eng/mySkills.vue"], _reslove);
 				});
 			},
 		},
 		{
 			path: "/eng/persional_infomation",
-			component: function() {
-				return new Promise(function(_reslove, _reject) {
+			component: function () {
+				return new Promise(function (_reslove, _reject) {
 					require(["./contents/eng/persionalInfomation.vue"], _reslove);
 				});
 			},
 		},
 		{
 			path: "/eng/Qualifications",
-			component: function() {
-				return new Promise(function(_reslove, _reject) {
+			component: function () {
+				return new Promise(function (_reslove, _reject) {
 					require(["./contents/eng/qualifications.vue"], _reslove);
 				});
 			},
 		},
 		{
 			path: "/eng/works_articles",
-			component: function() {
-				return new Promise(function(_reslove, _reject) {
+			component: function () {
+				return new Promise(function (_reslove, _reject) {
 					require(["./contents/eng/worksArticles.vue"], _reslove);
 				});
 			},
@@ -120,7 +120,7 @@ const smallRouter = new Router({
 });
 
 let HasRedirect = false;
-smallRouter.afterEach(function(to, from, next) {
+smallRouter.afterEach(function (to, from, next) {
 	if (!HasRedirect) {
 		window.__initPath = to.fullPath;
 	}
@@ -131,7 +131,7 @@ export default {
 	router: smallRouter,
 	mounted() {
 		var _self = this;
-		$(window).resize(function() {
+		$(window).resize(function () {
 			_self.resize();
 		});
 		this.resize();
@@ -163,10 +163,10 @@ export default {
 			HasRedirect = true;
 			var content = this.$refs.content;
 			var _self = this;
-			var showContent = function() {
+			var showContent = function () {
 				_self.current = _item;
 				_self.$router.push("/" + window.sys.langList[_self.lang].tag + _item.path);
-				$(content).animate({ right: 0, opacity: 1 }, 400, function() {});
+				$(content).animate({ right: 0, opacity: 1 }, 400, function () {});
 			};
 
 			if ($(content).css("display") === "none") {
@@ -180,8 +180,8 @@ export default {
 					{
 						duration: 100,
 						easing: "easeOutBack",
-						step: function() {},
-						complete: function() {
+						step: function () {},
+						complete: function () {
 							showContent();
 						},
 					}
@@ -199,8 +199,8 @@ export default {
 					{
 						duration: 400,
 						easing: "easeOutBack",
-						step: function() {},
-						complete: function() {
+						step: function () {},
+						complete: function () {
 							$(content).css("display", "none");
 							_callBack();
 						},
@@ -235,44 +235,44 @@ div.c-content
   .title
     overflow: hidden
     color: #fff
-    border-bottom: 3px solid #fff
-    margin-left: 60px
-    margin-top: 40px
-    height: 70px
-    line-height: 70px
+    border-bottom: .214286rem solid #fff
+    margin-left: 4.285714rem
+    margin-top: 2.857143rem
+    height: 5rem
+    line-height: 5rem
 
     span
       display: inline-block
-      width: 14px
-      height: 14px
+      width: 1rem
+      height: 1rem
       background-color: #fff
 
     label
-      font-size: 43.2px
+      font-size: 3.085714rem
       display: inline-block
-      margin-left: 26px
+      margin-left: 1.857143rem
 
     a
-      font-size: 43.2px
+      font-size: 3.085714rem
       display: inline-block
       float: right
       color: #fff
       cursor: pointer
       font-family: 'Webdings'
-      margin-right: 20px
+      margin-right: 1.428571rem
 
 div.mainContent
   overflow: hidden
   color: #fff
 
   table.perTable
-    margin: 60px 0px 0px 0px
-    font-size: 33px
-    text-indent: 51px
+    margin: 4.285714rem 0px 0px 0px
+    font-size: 2.357143rem
+    text-indent: 3.642857rem
 
     .avator
-      width: 450px
-      height: 450px
+      width: 32.142857rem
+      height: 32.142857rem
       background-position: center center
       background-repeat: no-repeat
       background-size: cover
@@ -282,45 +282,45 @@ div.mainContent
   table.skillsTable
     float: left
     display: inline-block
-    margin: 20px 100px 0px 0px
+    margin: 1.428571rem 7.142857rem 0px 0px
 
     tr
       td
-        padding: 0px 30px
-        font-size: 21.6px
-        line-height: 60px
-        height: 60px
+        padding: 0px 2.142857rem
+        font-size: 1.542857rem
+        line-height: 4.285714rem
+        height: 4.285714rem
 
       .ssTitle
-        font-size: 43.2px
-        line-height: 60px
-        height: 60px
+        font-size: 3.085714rem
+        line-height: 4.285714rem
+        height: 4.285714rem
         background-color: rgba(0, 0, 0, 0.5)
 
 div.viewScroller
   overflow: auto
   display: block
-  margin-left: 60px
+  margin-left: 4.285714rem
 
 div.mc-worksList
   overflow: hidden
 
   .wcw-item
     overflow: hidden
-    width: 314px
-    padding: 10px
+    width: 22.428571rem
+    padding: .714286rem
     background-color: rgba(31, 21, 72, 0.46)
     float: left
     display: inline-block
-    margin: 20px
+    margin: 1.428571rem
 
     .mcw-i-title
       overflow: hidden
-      line-height: 64px
+      line-height: 4.571429rem
 
       .mcwit-icon
-        width: 64px
-        height: 64px
+        width: 4.571429rem
+        height: 4.571429rem
         background-repeat: no-repeat
         background-size: contain
         background-position: center center
@@ -331,46 +331,46 @@ div.mc-worksList
         background-image: url('comImg/ZebraLogo.png')
 
       .mcwit-t
-        font-size: 43.2px
+        font-size: 3.085714rem
         float: left
         display: inline-block
 
     .mcw-content
-      line-height: 30px
-      min-height: 200px
-      text-indent: 40px
+      line-height: 2.142857rem
+      min-height: 14.285714rem
+      text-indent: 2.857143rem
 
 table.articleList
   tr
     td
-      line-height: 22px
+      line-height: 1.571429rem
 
       a
-        font-size: 14px
+        font-size: 1rem
         color: #fff
 
     .al-title
-      font-size: 30px
-      line-height: 40px
+      font-size: 2.142857rem
+      line-height: 2.857143rem
 
 table.wk-table
   width: 100%
   border-left: 1px solid #eee
   border-top: 1px solid #eee
-  margin: 20px 0px 20px 0px
+  margin: 1.428571rem 0px 1.428571rem 0px
   background-color: rgba(16, 12, 38, 0.35)
 
   tr
     td
       text-align: left
-      font-size: 30px
+      font-size: 2.142857rem
       border-right: 1px solid #eee
       border-bottom: 1px solid #eee
-      padding: 10px
-      line-height: 50px
+      padding: .714286rem
+      line-height: 3.571429rem
 
       p
-        text-indent: 30px
+        text-indent: 2.142857rem
 
   &:hover
     background-color: rgba(106, 93, 176, 0.35)
@@ -379,18 +379,18 @@ table.wk-table
     background-color: rgba(201, 116, 29, 0.35)
 
 table.t-abme
-  margin: 40px auto auto auto
+  margin: 2.857143rem auto auto auto
 
   tr
     td
-      font-size: 30px
+      font-size: 2.142857rem
       color: #fff
-      height: 40px
-      line: height 40px
+      height: 2.857143rem
+      line: height 2.857143rem
       text-align: left
 
       &.ab-title
-        font-size: 72px
-        height: 89px
-        line-height: 89px
+        font-size: 5.142857rem
+        height: 6.357143rem
+        line-height: 6.357143rem
 </style>

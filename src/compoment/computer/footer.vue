@@ -2,7 +2,7 @@
 	<div class="footerContainer">
 		<div class="qrcode">
 			<p>
-				<img src="~comImg/mobile_link.png" />
+				<img src="" />
 			</p>
 			<div>{{ qtext[lang] }}</div>
 		</div>
@@ -15,6 +15,8 @@
 </template>
 
 <script>
+import QRcode from "qrcode";
+
 export default {
 	name: "reFooter",
 	data() {
@@ -27,7 +29,7 @@ export default {
 	methods: {
 		showQrcode(_e) {
 			_e.stopPropagation();
-			var disp = function() {
+			var disp = function () {
 				$(".qrcode").hide();
 				$(document).unbind("click", disp);
 			};
@@ -37,6 +39,10 @@ export default {
 				$(".qrcode").css("top", $(window).height() / 2 - $(".qrcode").height() / 2 + "px");
 				$(".qrcode").css("left", $(window).width() / 2 - $(".qrcode").width() / 2 + "px");
 				$(document).click(disp);
+
+				QRcode.toDataURL(window.location.origin + "/mobile", function (err, url) {
+					$(".qrcode img").attr("src", url);
+				});
 			} else {
 				$(".qrcode").hide();
 			}

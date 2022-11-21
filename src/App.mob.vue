@@ -26,9 +26,9 @@ let mobileAdp = new _mobileAdp({
 	designWidth: 1176,
 	designHeight: 2400,
 	//横屏回调函数
-	hCallBack: function() {},
+	hCallBack: function () {},
 	//竖屏回调函数
-	vCallBack: function() {},
+	vCallBack: function () {},
 });
 mobileAdp.init();
 
@@ -69,13 +69,14 @@ export default {
 			this.$refs.workRecord,
 			this.$refs.end,
 		]);
+		debugger;
 		var showEdHinfo = false;
-		mobileAdp.hCallBack = function() {
+		mobileAdp.hCallBack = function () {
 			$(".hInfo").show();
 			showEdHinfo = true;
 		};
 
-		mobileAdp.vCallBack = function() {
+		mobileAdp.vCallBack = function () {
 			if (showEdHinfo) {
 				window.location.reload();
 			}
@@ -112,7 +113,7 @@ export default {
 			],
 		};
 
-		setTimeout(function() {
+		setTimeout(function () {
 			var w = new window.sys.window({
 				//标题
 				title: lanText.title[sys.langConfig],
@@ -130,14 +131,14 @@ export default {
 					arr: [
 						{
 							name: lanText.yBtn[sys.langConfig],
-							callBack: function() {
+							callBack: function () {
 								alt(lanText.alt1[sys.langConfig]);
 								w.close();
 							},
 						},
 						{
 							name: lanText.nBtn[sys.langConfig],
-							callBack: function() {
+							callBack: function () {
 								alt(lanText.alt2[sys.langConfig]);
 								w.close();
 							},
@@ -145,7 +146,7 @@ export default {
 					],
 				},
 				//关闭回调
-				closeCall: function() {},
+				closeCall: function () {},
 			});
 
 			w.open();

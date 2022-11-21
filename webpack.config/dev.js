@@ -9,7 +9,7 @@ var devConfig = {
 		filename: "bundle.js",
 		path: path.resolve(__dirname, "../buildSrc"),
 	},
-	devtool: "inline-source-map",
+	devtool: "eval-source-map",
 	devServer: {
 		contentBase: "./bildSrc",
 		open: true,
