@@ -3,6 +3,58 @@
 		<table border="0" collspacing="0" collspadding="0" class="wk-table b">
 			<tbody>
 				<tr>
+					<td colspan="2">工作经验：【2022/08-2023/05】:自由职业</td>
+				</tr>
+				<tr>
+					<td width="300">
+						<p>所属行业：</p>
+					</td>
+					<td>
+						<p>IT</p>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<p>所属职位：</p>
+					</td>
+					<td>
+						<p>web前端架构师/⼯程师</p>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<p>这段时间的工作概述：</p>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<p>
+							上家公司解散后，上家公司之前的负责人将另一个项目打包并外派给我做，目前已经完成并运行良好：
+							https://www.we2.net。
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<p>描述：</p>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<p>2022/08-2023/05 主要经历：https://www.we2.net</p>
+						<p>该产品为区块链产品，主要在韩国进行地推。</p>
+						<p>
+							上家公司由于一些原因解散之后，之前的负责人回到了国外，又将另一个项目（we2net）的前端工程外包给了我，项目周期持续了6个月，我在这个项目里主要负责前端工程师以及一些简单的前端运维，应用了reactjs,nextjs,typescript,i18n,
+							react-pixi-fiber,react-three-fiber，等技术,首次尝试在threejs里编写shader，并通过这些图形技术提升网站的运行速度和体验。区块链交互方案为自研的@bobliao/web3-express-react已上线npmjs.运维方面主要为linux环境，使用pm2托管运行nodejs服务。并自己尝试编写了一些能够帮助快速更新和部署站点的bash文件
+						</p>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<table border="0" collspacing="0" collspadding="0" class="wk-table b">
+			<tbody>
+				<tr>
 					<td colspan="2">
 						Working experience：【2021/08-2022/08:Beijing Huzheng Network Technology
 						Co., Ltd】
@@ -21,9 +73,7 @@
 						<p>Position：</p>
 					</td>
 					<td>
-						<p>
-							Web front-end architect/engineer
-						</p>
+						<p>Web front-end architect/engineer</p>
 					</td>
 				</tr>
 				<tr>

@@ -18,8 +18,8 @@
 				<tr>
 					<td width="200">Education:</td>
 					<td>
-						【March 1, 2020 ~ : self examination undergraduate / Northeast Normal
-						University / computer science and technology】
+						【March 1, 2020 ~ 2023-04 : self examination undergraduate / Northeast
+						Normal University / computer science and technology】
 					</td>
 				</tr>
 			</tbody>

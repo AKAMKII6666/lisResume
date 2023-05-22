@@ -11,6 +11,14 @@
 			<span @click="showQrcode($event)">{{ ftext[lang] }}</span>
 		</p>
 		Powered By ThreeJs,Vuejs
+		<div class="ba">京ICP备2022032913号-1</div>
+		<div class="ba">
+			<a
+				href="https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11011402013386"
+				target="_blank"
+				>北京市昌平驻区大队公安备案号:11011402013386</a
+			>
+		</div>
 	</div>
 </template>
 
@@ -54,31 +62,31 @@ export default {
 <style lang="stylus" scoped>
 .footerContainer
   position: fixed
-  bottom: 20px
+  bottom: 1.428571rem
   left: 0px
   width: 100%
   text-align: center
   color: #fff
   z-index: 10
-  font-size: 14px
+  font-size: 1rem
 
   span
     cursor: pointer
 
   p
-    margin-bottom: 20px
+    margin-bottom: 1.428571rem
 
   .qrcode
     display: none
-    width: 367px
+    width: 26.214286rem
     overflow: hidden
     position: fixed
     top: 0px
     left: 0px
     background-color: #fff
-    padding-bottom: 45px
-    padding-top: 45px
-    border-radius: 20px
+    padding-bottom: 3.214286rem
+    padding-top: 3.214286rem
+    border-radius: 1.428571rem
 
     p
       text-align: center
@@ -87,8 +95,14 @@ export default {
         margin: auto
 
     div
-      font-size: 24px
-      margin-top: 10px
+      font-size: 1.714286rem
+      margin-top: .714286rem
       text-align: center
       color: #454545
+
+	.ba
+		font-size:.357143rem
+
+		a
+			color:#fff
 </style>

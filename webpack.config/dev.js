@@ -34,7 +34,7 @@ var devConfig = {
 	 * 目前只是实验性功能，还不是正式版本，dev用用就好了
 	 */
 	experiments: {
-		lazyCompilation: true,
+		lazyCompilation: false,
 	},
 	/*
     让一些产物优化的功能在开发模式下关闭，减少资源消耗

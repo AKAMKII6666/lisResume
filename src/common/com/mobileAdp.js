@@ -139,7 +139,7 @@ var _mobileAdp = function (_options) {
 			}
 			switch (o.mode) {
 				case "apple":
-					n = "width=" + self.designWidth + ", user-scalable=no; user-scalable=0";
+					n = "width=" + self.designWidth + ", user-scalable=no, user-scalable=0";
 					break;
 				case "android-2.2":
 					d.dWidth ||

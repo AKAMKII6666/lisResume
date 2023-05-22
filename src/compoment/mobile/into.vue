@@ -30,7 +30,54 @@ img.src = imgPath;
 let context = null;
 let imgDataArr = [];
 
-let draw = function(_view) {
+let timeouter;
+let u = navigator.userAgent;
+let isAndroid = u.indexOf("Android") > -1 || u.indexOf("Adr") > -1;
+let isiOS = !!u.match(/i[^;]+;( U;)? CPU.+Mac OS X/);
+
+let draw = function (_view) {
+	//安卓可以将图片缓存为imageData加速渲染
+	if (isAndroid) {
+		androidAnimate(_view);
+	}
+	//ios如果将图片缓存为imagedata 的话会导致内存溢出
+	//ios safari 可以直接用图片做渲染，不用缓存也很快
+	if (isiOS) {
+		iosAnimate(_view);
+	}
+};
+
+let iosAnimate = function (_view) {
+	/**
+	 * 图片在电脑端会载入不全，但是手机端可以完全载入这些图片内容
+	 * 这个目前不需要解决，因为在电脑端是不用看手机端的内容的
+	 */
+	if (hasLoaded && context !== null) {
+		requestAnimationFrame(function () {
+			context.clearRect(0, 0, _view.view.currTotalWidth, _view.view.currHeight);
+			context.drawImage(
+				img,
+				(_view.width - _view.view.currTotalWidth) / 2,
+				-(_view.view.currHeight * -_view.view.currFrame),
+				_view.view.currTotalWidth,
+				_view.view.currTotalHeight
+			);
+		});
+		if ($(".loadding").css("display") !== "none") {
+			$(".loadding").hide();
+			$(".mcmain2").fadeIn(600);
+			$(".mcmain1").fadeIn(600);
+		}
+	} else {
+		if (typeof timeouter === "undefined") {
+			timeouter = setTimeout(function () {
+				draw(_view);
+			}, 100);
+		}
+	}
+};
+
+let androidAnimate = function (_view) {
 	/**
 	 * 图片在电脑端会载入不全，但是手机端可以完全载入这些图片内容
 	 * 这个目前不需要解决，因为在电脑端是不用看手机端的内容的
@@ -55,34 +102,43 @@ let draw = function(_view) {
 					)
 				);
 			}
-			context.putImageData(
-				imgDataArr[-_view.view.currFrame],
-				(_view.width - _view.view.currTotalWidth) / 2,
-				0
-			);
 
 			if ($(".loadding").css("display") !== "none") {
 				$(".loadding").hide();
 				$(".mcmain2").fadeIn(600);
 				$(".mcmain1").fadeIn(600);
 			}
-		} else {
-			context.clearRect(0, 0, _view.view.currTotalWidth, _view.view.currHeight);
+			window.imgDataArr = imgDataArr;
 			context.putImageData(
 				imgDataArr[-_view.view.currFrame],
 				(_view.width - _view.view.currTotalWidth) / 2,
 				0
 			);
+		} else {
+			requestAnimationFrame(function () {
+				context.clearRect(0, 0, _view.view.currTotalWidth, _view.view.currHeight);
+				context.putImageData(
+					imgDataArr[-_view.view.currFrame],
+					(_view.width - _view.view.currTotalWidth) / 2,
+					0
+				);
+			});
 		}
 	} else {
-		setTimeout(function() {
-			draw(_view);
-		}, 100);
+		if (typeof timeouter === "undefined") {
+			timeouter = setTimeout(function () {
+				draw(_view);
+			}, 100);
+		}
 	}
 };
+
 let hasLoaded = false;
-img.onload = function() {
+img.onload = function () {
 	hasLoaded = true;
+	setTimeout(function () {
+		$(window).resize();
+	}, 1);
 };
 export default {
 	name: "into",
@@ -152,7 +208,7 @@ export default {
 				//缩放比例
 				scale: 0,
 				//丢弃贞
-				cutFr: 5,
+				cutFr: 20,
 				//当前动画进度 百分比
 				progress: 0,
 			},
@@ -191,7 +247,9 @@ export default {
 		resize() {
 			this.$refs.canvas.width = this.width;
 			this.$refs.canvas.height = this.height;
-			draw(this);
+
+			var self = this;
+			draw(self);
 		},
 		showFromTop() {},
 		showFromButton() {},
@@ -266,7 +324,8 @@ export default {
 
 			//console.log(this.vScroHeight)
 
-			draw(this);
+			var self = this;
+			draw(self);
 		},
 		//向上滚出画面时的回调
 		dispUpCall() {
